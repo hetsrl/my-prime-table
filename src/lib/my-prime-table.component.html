@@ -1,0 +1,64 @@
+<div class="grid" style="margin-top: 15px;overflow-x: auto;" *ngIf="showGlobal">
+  <div class="lg:col-12">
+    <p-table [value]="list"
+      styleClass="p-datatable-sm p-datatable-striped"
+      [paginator]="!prop.noPagination"
+      responsiveLayout="scroll"
+      [rows]="getRows()" [totalRecords]="list.length" [rowsPerPageOptions]="getRowsPerPageOptions()">
+      <ng-template pTemplate="caption" *ngIf="getShowCaption()">
+        <div class="grid align-items-center">
+          <div class="lg:col-2 md:col-3">
+            <button *ngIf="prop.xlsEnable" type="button" pButton icon="pi pi-file-excel" iconPos="left" label="Excel" (click)="exportExcel()"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
+            <button *ngIf="prop.pdfEnable" type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
+          </div>
+          <div class="lg:col-8 md:col-6">
+              <div class="text-center">{{prop?.title || ''}}</div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="item.keyValue" [ngClass]="item.class">
+            <ng-template [ngIf]="item.noSorting" [ngIfElse]="elseBlock">
+              <div [style]="item.width ? {'width': item.width} : {} ">
+                {{item.label}}
+              </div>
+            </ng-template>
+            <ng-template #elseBlock>
+              <div [style]="item.width ? {'width': item.width} : {} ">
+                {{item.label}} <p-sortIcon [field]="item.keyValue"></p-sortIcon>
+              </div>
+            </ng-template>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="item.keyValue" [ngClass]="item.class">
+            <span>
+              <ng-template [ngIf]="item.isIcon" [ngIfElse]="elseBlock">
+                <div [style]="item.width ? {'width': item.width} : {} ">
+                  <i [ngClass]="item.icon" [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
+                </div>
+              </ng-template>
+              <ng-template #elseBlock>
+                <div [style]="item.width ? {'width': item.width} : {} ">
+                  {{getValue(row, item)}}
+                </div>
+              </ng-template>
+            </span>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td [attr.colspan]="getItemsTable().length"><strong>{{getNoDataText()}}</strong></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

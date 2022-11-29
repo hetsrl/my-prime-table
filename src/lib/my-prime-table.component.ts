@@ -1,0 +1,142 @@
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable radix */
+/* eslint-disable eqeqeq */
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/semi */
+/* eslint-disable quote-props */
+/* eslint-disable @typescript-eslint/naming-convention */
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import * as FileSaver from 'file-saver';
+
+import { MyTable } from './model/MyTable';
+import { MyTableClickCell } from './model/MyTableClickCell';
+import { MyTableItem } from './model/MyTableItem';
+
+@Component({
+  selector: 'my-prime-table',
+  templateUrl: './my-prime-table.component.html',
+  styleUrls: ['./my-prime-table.component.css'],
+})
+export class MyPrimeTableComponent implements OnInit, OnChanges {
+
+  @Input() list: any[] = [];
+
+  @Input() prop: MyTable | undefined;
+
+  @Output() clickExportPdf = new EventEmitter<any>();
+
+  @Output() clickRowCell = new EventEmitter<any>();
+
+  showGlobal = false;
+
+  constructor() {}
+
+  ngOnInit(): void {
+  }
+
+  getShowCaption(){
+    return !!this.list && this.list.length > 0 && !!this.prop && (!!this.prop.xlsEnable || !!this.prop.pdfEnable || !!this.prop.title)
+  }
+
+  getRowsPerPageOptions(){
+    return this.prop?.rowsPerPageOptions && this.prop?.rowsPerPageOptions.length > 0 ? this.prop.rowsPerPageOptions : [5, 10, 25]
+  }
+
+  getRows(){
+    return this.prop?.rows || 10
+  }
+
+  getNoDataText(){
+    return this.prop?.noDataText || 'No data found!';
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.showGlobal = false;
+    setTimeout(() =>{this.showGlobal = true})
+  }
+
+  getItemsTable(){
+    return this.prop && this.prop.items.filter(e => !e.onlyXls)
+  }
+
+  onClickCell(row: any, keyValue: string){
+    this.clickRowCell.emit(new MyTableClickCell(row, keyValue));
+  }
+
+  exportPdf() {
+    this.clickExportPdf.emit();
+  }
+
+  getValue(row: { [x: string]: any; }, item: MyTableItem){
+
+    let val = row[item.keyValue]
+
+    if(item.pipes && item.pipes.length > 0){
+
+      item.pipes.forEach(p => {
+        val = p.pipe.transform(val, p.args)
+      })
+
+    }
+
+    return val;
+
+  }
+
+  exportExcel() {
+
+    const estr = this.list.map(iter => {
+
+        // eslint-disable-next-line prefer-const
+        let obj: { [x: string]: any; } = { };
+        this.prop && this.prop.items.forEach(e => {
+
+          if(e.onlyTable || e.isIcon){
+            return
+          }
+
+          obj[e.label] = iter[e.keyValue]
+
+          if(e.xlsPipes && e.xlsPipes.length > 0){
+
+            e.xlsPipes.forEach(p => {
+              obj[e.label] = p.pipe.transform(obj[e.label], p.args)
+            })
+
+          }
+
+        });
+
+       return obj;
+    })
+
+    import('xlsx').then(xlsx => {
+
+        let filenameArray = [this.prop?.xlsPrefixFilename || '',
+                              this.prop?.xlsTitle || '',
+                              this.prop?.xlsSuffixFilenameWithDate ? '' + new Date().getTime() : '']
+
+        filenameArray = filenameArray.filter(f=>!!f);
+
+        let filename = ''
+        if(filenameArray.length > 0){
+          filename = filenameArray.join('_')
+        }
+        else{
+          filename = "Report"
+        }
+
+        const worksheet = xlsx.utils.json_to_sheet(estr);
+        const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+        const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+        const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+        const EXCEL_EXTENSION = '.xlsx';
+        const data: Blob = new Blob([excelBuffer], {
+            type: EXCEL_TYPE
+        });
+        FileSaver.saveAs(data, filename + EXCEL_EXTENSION);
+    });
+  }
+}
+
