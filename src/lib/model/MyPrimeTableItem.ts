@@ -1,12 +1,12 @@
-import { MyTablePipeItem } from './MyPrimeTablePipeItem';
+import { MyPrimeTablePipeItem } from './MyPrimeTablePipeItem';
 
-export class MyTableItem{
+export class MyPrimeTableItem{
   label: string;
   keyValue: string;
   width?: string;
   class?: string;
-  pipes?: Array<MyTablePipeItem>;
-  xlsPipes?: Array<MyTablePipeItem>;
+  pipes?: Array<MyPrimeTablePipeItem>;
+  xlsPipes?: Array<MyPrimeTablePipeItem>;
   onlyXls?: boolean;
   onlyTable?: boolean;
   isIcon?: boolean;

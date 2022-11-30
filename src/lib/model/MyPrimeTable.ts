@@ -1,6 +1,6 @@
-import { MyTableItem } from './MyPrimeTableItem';
+import { MyPrimeTableItem } from './MyPrimeTableItem';
 
-export class MyTable{
+export class MyPrimeTable{
   title?: string;
   xlsEnable?: boolean;
   xlsTitle?: string;
@@ -8,7 +8,7 @@ export class MyTable{
   xlsSuffixFilenameWithDate?: boolean;
   pdfEnable?: boolean;
   // pdfRowEnable?: boolean;
-  items: MyTableItem[];
+  items: MyPrimeTableItem[];
   noPagination?: boolean;
   rowsPerPageOptions?: number[];
   rows?: number;

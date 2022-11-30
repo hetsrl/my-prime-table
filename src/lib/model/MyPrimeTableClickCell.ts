@@ -1,4 +1,4 @@
-export class MyTableClickCell{
+export class MyPrimeTableClickCell{
   keyValue: string;
   row: any;
 

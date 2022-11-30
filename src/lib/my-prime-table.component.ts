@@ -9,9 +9,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as FileSaver from 'file-saver';
 
-import { MyTable } from './model/MyPrimeTable';
-import { MyTableClickCell } from './model/MyPrimeTableClickCell';
-import { MyTableItem } from './model/MyPrimeTableItem';
+import { MyPrimeTable } from './model/MyPrimeTable';
+import { MyPrimeTableClickCell } from './model/MyPrimeTableClickCell';
+import { MyPrimeTableItem } from './model/MyPrimeTableItem';
 
 @Component({
   selector: 'my-prime-table',
@@ -22,7 +22,7 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   @Input() list: any[] = [];
 
-  @Input() prop: MyTable | undefined;
+  @Input() prop: MyPrimeTable | undefined;
 
   @Output() clickExportPdf = new EventEmitter<any>();
 
@@ -61,14 +61,14 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   }
 
   onClickCell(row: any, keyValue: string){
-    this.clickRowCell.emit(new MyTableClickCell(row, keyValue));
+    this.clickRowCell.emit(new MyPrimeTableClickCell(row, keyValue));
   }
 
   exportPdf() {
     this.clickExportPdf.emit();
   }
 
-  getValue(row: { [x: string]: any; }, item: MyTableItem){
+  getValue(row: { [x: string]: any; }, item: MyPrimeTableItem){
 
     let val = row[item.keyValue]
 

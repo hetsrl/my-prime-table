@@ -1,6 +1,6 @@
 import { PipeTransform } from '@angular/core';
 
-export class MyTablePipeItem{
+export class MyPrimeTablePipeItem{
   pipe: PipeTransform;
   args: Array<any> | undefined;
 
