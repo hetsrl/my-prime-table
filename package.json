@@ -17,17 +17,15 @@
   },
   "description": "Generic and reusable custom implementation of PrimeNG Table",
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0"
-  },
-  "dependencies": {
-    "tslib": "^2.3.0",
+    "@angular/common": "^14.1.0",
+    "@angular/core": "^14.1.0",
     "file-saver": "^2.0.5",
     "primeflex": "^3.2.1",
     "primeicons": "^6.0.1",
     "primeng": "^14.1.2",
-    "rxjs": "~7.5.0",
-    "xlsx": "^0.18.5",
-    "zone.js": "~0.12.0"
+    "xlsx": "^0.18.5"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   }
 }
