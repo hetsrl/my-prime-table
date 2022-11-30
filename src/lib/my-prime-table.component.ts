@@ -9,9 +9,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as FileSaver from 'file-saver';
 
-import { MyTable } from './model/MyTable';
-import { MyTableClickCell } from './model/MyTableClickCell';
-import { MyTableItem } from './model/MyTableItem';
+import { MyTable } from './model/MyPrimeTable';
+import { MyTableClickCell } from './model/MyPrimeTableClickCell';
+import { MyTableItem } from './model/MyPrimeTableItem';
 
 @Component({
   selector: 'my-prime-table',

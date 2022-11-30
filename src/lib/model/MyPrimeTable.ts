@@ -1,4 +1,4 @@
-import { MyTableItem } from './MyTableItem';
+import { MyTableItem } from './MyPrimeTableItem';
 
 export class MyTable{
   title?: string;

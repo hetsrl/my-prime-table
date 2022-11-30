@@ -1,4 +1,4 @@
-import { MyTablePipeItem } from './MyTablePipeItem';
+import { MyTablePipeItem } from './MyPrimeTablePipeItem';
 
 export class MyTableItem{
   label: string;
