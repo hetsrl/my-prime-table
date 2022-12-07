@@ -14,4 +14,7 @@ export class MyPrimeTableItem{
   icon?: string;
   iconFontSize?: string;
   noSorting?: boolean;
+  isInputText?: boolean;
+  typeInputText?: string;
+  placeholder?: string;
 }

@@ -8,6 +8,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as FileSaver from 'file-saver';
+import { MyPrimeTableChangeCell } from '../public-api';
 
 import { MyPrimeTable } from './model/MyPrimeTable';
 import { MyPrimeTableClickCell } from './model/MyPrimeTableClickCell';
@@ -27,6 +28,12 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   @Output() clickExportPdf = new EventEmitter<any>();
 
   @Output() clickRowCell = new EventEmitter<any>();
+
+  @Output() changeInput = new EventEmitter<any>();
+
+  @Output() clickGenericButton1 = new EventEmitter<any>();
+
+  @Output() clickGenericButton2 = new EventEmitter<any>();
 
   showGlobal = false;
 
@@ -60,8 +67,20 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
     return this.prop && this.prop.items.filter(e => !e.onlyXls)
   }
 
+  onChangeInput(row, keyValue){
+    this.changeInput.emit(new MyPrimeTableChangeCell(row, keyValue, this.list));
+  }
+
   onClickCell(row: any, keyValue: string){
     this.clickRowCell.emit(new MyPrimeTableClickCell(row, keyValue));
+  }
+
+  onClickGB1(){
+    this.clickGenericButton1.emit();
+  }
+
+  onClickGB2(){
+    this.clickGenericButton2.emit();
   }
 
   exportPdf() {

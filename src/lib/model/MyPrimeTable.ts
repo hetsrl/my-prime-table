@@ -13,4 +13,12 @@ export class MyPrimeTable{
   rowsPerPageOptions?: number[];
   rows?: number;
   noDataText?: string;
+
+  genericButton1Enable?: boolean;
+  genericButton1Icon?: string;
+  genericButton1Label?: string;
+  genericButton2Enable?: boolean;
+  genericButton2Icon?: string;
+  genericButton2Label?: string;
+
 }

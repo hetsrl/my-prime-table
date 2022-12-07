@@ -14,6 +14,12 @@
             <button *ngIf="prop.pdfEnable" type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
+            <button *ngIf="prop.genericButton1Enable" type="button" pButton [icon]="prop.genericButton1Icon" iconPos="left" [label]="prop.genericButton1Label" (click)="onClickGB1()"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
+            <button *ngIf="prop.genericButton2Enable" type="button" pButton [icon]="prop.genericButton2Icon" iconPos="left" [label]="prop.genericButton2Label" (click)="onClickGB2()"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
           </div>
           <div class="lg:col-8 md:col-6">
               <div class="text-center">{{prop?.title || ''}}</div>
@@ -22,8 +28,8 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="item.keyValue" [ngClass]="item.class">
-            <ng-template [ngIf]="item.noSorting" [ngIfElse]="elseBlock">
+          <th *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [ngClass]="item.class">
+            <ng-template [ngIf]="item.noSorting || item.isInputText" [ngIfElse]="elseBlock">
               <div [style]="item.width ? {'width': item.width} : {} ">
                 {{item.label}}
               </div>
@@ -38,14 +44,26 @@
       </ng-template>
       <ng-template pTemplate="body" let-row>
         <tr>
-          <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="item.keyValue" [ngClass]="item.class">
+          <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
             <span>
-              <ng-template [ngIf]="item.isIcon" [ngIfElse]="elseBlock">
+              <ng-template [ngIf]="item.isIcon && !item.isInputText">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   <i [ngClass]="item.icon" [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
                 </div>
               </ng-template>
-              <ng-template #elseBlock>
+              <ng-template [ngIf]="item.isInputText && !item.isIcon">
+                <div [style]="item.width ? {'width': item.width} : {} ">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (change)='onChangeInput(row, item.keyValue)'>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span style="color:#3B82F6;">{{(getValue(row, item) || '') === '' ? (item.placeholder || '') : getValue(row, item)}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </div>
+              </ng-template>
+              <ng-template [ngIf]="!item.isIcon && !item.isInputText">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   {{getValue(row, item)}}
                 </div>
