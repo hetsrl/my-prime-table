@@ -12,5 +12,5 @@ export * from './lib/model/MyPrimeTableItem';
 export * from './lib/model/MyPrimeTablePipeItem';
 export * from './lib/model/MyPrimeTableChangeCell';
 
-export * as FileSaver from 'file-saver';
-export * from 'xlsx';
+//export * as FileSaver from 'file-saver';
+//export * from 'xlsx';
