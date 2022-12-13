@@ -15,6 +15,7 @@ export class MyPrimeTableItem{
   iconFontSize?: string;
   noSorting?: boolean;
   isInputText?: boolean;
+  inputTextDisableFunc?: (row) => boolean;
   typeInputText?: string;
   placeholder?: string;
 }

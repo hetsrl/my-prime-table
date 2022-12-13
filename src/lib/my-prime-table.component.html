@@ -46,16 +46,16 @@
         <tr>
           <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
             <span>
-              <ng-template [ngIf]="item.isIcon && !item.isInputText">
+              <ng-template [ngIf]="item.isIcon">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   <i [ngClass]="item.icon" [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
                 </div>
               </ng-template>
-              <ng-template [ngIf]="item.isInputText && !item.isIcon">
+              <ng-template [ngIf]="!item.isIcon && item.isInputText && !(item.inputTextDisableFunc && item.inputTextDisableFunc(row))">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (change)='onChangeInput(row, item.keyValue)'>
+                            <input pInputText [ngClass]="'p-inputtext-sm ' + (item.class || '')" class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (change)='onChangeInput(row, item.keyValue)'>
                         </ng-template>
                         <ng-template pTemplate="output">
                             <span style="color:#3B82F6;">{{(getValue(row, item) || '') === '' ? (item.placeholder || '') : getValue(row, item)}}</span>
@@ -63,7 +63,7 @@
                     </p-cellEditor>
                 </div>
               </ng-template>
-              <ng-template [ngIf]="!item.isIcon && !item.isInputText">
+              <ng-template [ngIf]="!item.isIcon && (!item.isInputText || (item.inputTextDisableFunc && item.inputTextDisableFunc(row)))">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   {{getValue(row, item)}}
                 </div>
