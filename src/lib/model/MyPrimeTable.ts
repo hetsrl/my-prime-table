@@ -21,4 +21,7 @@ export class MyPrimeTable{
   genericButton2Icon?: string;
   genericButton2Label?: string;
 
+  headerClassLeft?: string;
+  headerClassCenter?:string;
+
 }

@@ -18,4 +18,5 @@ export class MyPrimeTableItem{
   inputTextDisableFunc?: (row) => boolean;
   typeInputText?: string;
   placeholder?: string;
+  isHiddenFunc?: (row) => boolean;
 }

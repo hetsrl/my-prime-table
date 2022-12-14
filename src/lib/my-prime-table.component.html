@@ -7,7 +7,7 @@
       [rows]="getRows()" [totalRecords]="list.length" [rowsPerPageOptions]="getRowsPerPageOptions()">
       <ng-template pTemplate="caption" *ngIf="getShowCaption()">
         <div class="grid align-items-center">
-          <div class="lg:col-2 md:col-3">
+          <div [class]="prop.headerClassLeft || 'lg:col-2 md:col-3'">
             <button *ngIf="prop.xlsEnable" type="button" pButton icon="pi pi-file-excel" iconPos="left" label="Excel" (click)="exportExcel()"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
@@ -21,7 +21,7 @@
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
           </div>
-          <div class="lg:col-8 md:col-6">
+          <div [class]="prop.headerClassCenter || 'lg:col-8 md:col-6'">
               <div class="text-center">{{prop?.title || ''}}</div>
           </div>
         </div>
@@ -46,12 +46,12 @@
         <tr>
           <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
             <span>
-              <ng-template [ngIf]="item.isIcon">
+              <ng-template [ngIf]="item.isIcon && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   <i [ngClass]="item.icon" [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
                 </div>
               </ng-template>
-              <ng-template [ngIf]="!item.isIcon && item.isInputText && !(item.inputTextDisableFunc && item.inputTextDisableFunc(row))">
+              <ng-template [ngIf]="!item.isIcon && item.isInputText && !(item.inputTextDisableFunc && item.inputTextDisableFunc(row)) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
@@ -63,7 +63,7 @@
                     </p-cellEditor>
                 </div>
               </ng-template>
-              <ng-template [ngIf]="!item.isIcon && (!item.isInputText || (item.inputTextDisableFunc && item.inputTextDisableFunc(row)))">
+              <ng-template [ngIf]="!item.isIcon && (!item.isInputText || (item.inputTextDisableFunc && item.inputTextDisableFunc(row))) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   {{getValue(row, item)}}
                 </div>
