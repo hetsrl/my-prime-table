@@ -23,6 +23,9 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   @Input() list: any[] = [];
 
+  @Input() selectedList: any[] = [];
+  @Output() selectedListChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+
   @Input() prop: MyPrimeTable | undefined;
 
   @Output() clickExportPdf = new EventEmitter<any>();
@@ -40,6 +43,18 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit(): void {
+  }
+
+  onRowSelect(event) {
+    this.selectedListChange.emit(this.selectedList);
+  }
+
+  onRowUnselect(event) {
+    this.selectedListChange.emit(this.selectedList);
+  }
+
+  onHeaderCheckboxToggle(event) {
+    this.selectedListChange.emit(this.selectedList);
   }
 
   getShowCaption(){

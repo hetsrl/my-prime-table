@@ -24,4 +24,7 @@ export class MyPrimeTable{
   headerClassLeft?: string;
   headerClassCenter?:string;
 
+  selectionDataKey?:string;
+  isCheckable?: boolean;
+
 }

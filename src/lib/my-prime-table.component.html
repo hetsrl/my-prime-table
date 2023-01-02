@@ -4,6 +4,11 @@
       styleClass="p-datatable-sm p-datatable-striped"
       [paginator]="!prop.noPagination"
       responsiveLayout="scroll"
+      (onRowSelect)="onRowSelect($event)"
+      (onRowUnselect)="onRowUnselect($event)"
+      (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event)"
+      [(selection)]="selectedList"
+      [dataKey]="prop.selectionDataKey || ''"
       [rows]="getRows()" [totalRecords]="list.length" [rowsPerPageOptions]="getRowsPerPageOptions()">
       <ng-template pTemplate="caption" *ngIf="getShowCaption()">
         <div class="grid align-items-center">
@@ -28,6 +33,9 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
+          <th style="width: 4rem" *ngIf="prop.isCheckable">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
           <th *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [ngClass]="item.class">
             <ng-template [ngIf]="item.noSorting || item.isInputText" [ngIfElse]="elseBlock">
               <div [style]="item.width ? {'width': item.width} : {} ">
@@ -44,6 +52,9 @@
       </ng-template>
       <ng-template pTemplate="body" let-row>
         <tr>
+          <td *ngIf="prop.isCheckable">
+            <p-tableCheckbox [value]="row"></p-tableCheckbox>
+          </td>
           <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
             <span>
               <ng-template [ngIf]="item.isIcon && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
@@ -74,7 +85,7 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td [attr.colspan]="getItemsTable().length"><strong>{{getNoDataText()}}</strong></td>
+          <td [attr.colspan]="getItemsTable().length + (prop.isCheckable ? 1 : 0)"><strong>{{getNoDataText()}}</strong></td>
         </tr>
       </ng-template>
     </p-table>
