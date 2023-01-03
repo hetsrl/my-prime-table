@@ -8,7 +8,7 @@
       (onRowUnselect)="onRowUnselect($event)"
       (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event)"
       [(selection)]="selectedList"
-      [dataKey]="prop.selectionDataKey || ''"
+      [dataKey]="prop.selectionDataKey || null"
       [rows]="getRows()" [totalRecords]="list.length" [rowsPerPageOptions]="getRowsPerPageOptions()">
       <ng-template pTemplate="caption" *ngIf="getShowCaption()">
         <div class="grid align-items-center">
