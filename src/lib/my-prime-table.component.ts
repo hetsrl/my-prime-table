@@ -38,7 +38,9 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   @Output() clickGenericButton2 = new EventEmitter<any>();
 
-  showGlobal = false;
+  //showGlobal = false;
+
+  showGlobal = true;
 
   constructor() {}
 
@@ -74,8 +76,9 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.showGlobal = false;
-    setTimeout(() =>{this.showGlobal = true})
+    // this.showGlobal = false;
+    // setTimeout(() =>{this.showGlobal = true})
+    // console.log("ngOnChanges")
   }
 
   getItemsTable(){
