@@ -36,8 +36,8 @@
           <th style="width: 4rem" *ngIf="prop.isCheckable">
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
-          <th *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [ngClass]="item.class">
-            <ng-template [ngIf]="item.noSorting || item.isInputText" [ngIfElse]="elseBlock">
+          <th *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch) ? null : item.keyValue" [ngClass]="item.class">
+            <ng-template [ngIf]="item.noSorting || item.isInputText || item.isInputSwitch" [ngIfElse]="elseBlock">
               <div [style]="item.width ? {'width': item.width} : {} ">
                 {{item.label}}
               </div>
@@ -55,14 +55,14 @@
           <td *ngIf="prop.isCheckable">
             <p-tableCheckbox [value]="row"></p-tableCheckbox>
           </td>
-          <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText) ? null : item.keyValue" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
+          <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch) ? null : item.keyValue" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
             <span>
-              <ng-template [ngIf]="item.isIcon && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
+              <ng-template [ngIf]="!item.isInputSwitch && item.isIcon && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   <i [ngClass]="item.icon" [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
                 </div>
               </ng-template>
-              <ng-template [ngIf]="!item.isIcon && item.isInputText && !(item.inputTextDisableFunc && item.inputTextDisableFunc(row)) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
+              <ng-template [ngIf]="!item.isInputSwitch && !item.isIcon && item.isInputText && !(item.inputTextDisableFunc && item.inputTextDisableFunc(row)) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
@@ -74,11 +74,17 @@
                     </p-cellEditor>
                 </div>
               </ng-template>
-              <ng-template [ngIf]="!item.isIcon && (!item.isInputText || (item.inputTextDisableFunc && item.inputTextDisableFunc(row))) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
-                <div [style]="item.width ? {'width': item.width} : {} ">
+              <ng-template [ngIf]="!item.isInputSwitch && !item.isIcon && (!item.isInputText || (item.inputTextDisableFunc && item.inputTextDisableFunc(row))) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
+                <div [style]="item.width ? {'width': item.width, 'color': item.textColorFunc ? item.textColorFunc(row) : null} : {'color': item.textColorFunc ? item.textColorFunc(row) : null} ">
                   {{getValue(row, item)}}
                 </div>
               </ng-template>
+              <ng-template [ngIf]="item.isInputSwitch && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
+                <div [style]="item.width ? {'width': item.width} : {} ">
+                  <p-inputSwitch [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (onChange)='onChangeInput(row, item.keyValue)'></p-inputSwitch>
+                </div>
+              </ng-template>
+
             </span>
           </td>
         </tr>

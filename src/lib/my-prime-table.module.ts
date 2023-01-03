@@ -8,6 +8,8 @@ import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
 import {InputTextModule} from 'primeng/inputtext';
 import {PanelModule} from 'primeng/panel';
+import {InputSwitchModule} from 'primeng/inputswitch';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import {PanelModule} from 'primeng/panel';
     PaginatorModule,
     InputTextModule,
     PanelModule,
+    InputSwitchModule,
   ],
   exports: [
     MyPrimeTableComponent,
@@ -28,6 +31,7 @@ import {PanelModule} from 'primeng/panel';
     PaginatorModule,
     InputTextModule,
     PanelModule,
+    InputSwitchModule,
   ],
 })
 export class MyPrimeTableModule { }

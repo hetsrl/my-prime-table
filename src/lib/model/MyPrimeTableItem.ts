@@ -19,4 +19,8 @@ export class MyPrimeTableItem{
   typeInputText?: string;
   placeholder?: string;
   isHiddenFunc?: (row) => boolean;
+  isInputSwitch?: boolean;
+  trueValue?: string;
+  falseValue?: string;
+  textColorFunc?: (row) => any;
 }
