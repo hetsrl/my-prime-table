@@ -27,4 +27,6 @@ export class MyPrimeTable{
   selectionDataKey?:string;
   isCheckable?: boolean;
 
+  isCheckHiddenFunc?: (row) => boolean;
+
 }

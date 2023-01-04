@@ -53,7 +53,7 @@
       <ng-template pTemplate="body" let-row>
         <tr>
           <td *ngIf="prop.isCheckable">
-            <p-tableCheckbox [value]="row"></p-tableCheckbox>
+            <p-tableCheckbox [value]="row" [hidden]="prop.isCheckHiddenFunc && prop.isCheckHiddenFunc(row)"></p-tableCheckbox>
           </td>
           <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch) ? null : item.keyValue" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
             <span>
