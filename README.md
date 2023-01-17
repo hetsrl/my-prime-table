@@ -68,14 +68,14 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 | pipe                     | PipeTransform                | new MyDatePipe()   | pipe to be applied to the output                  |
 | args                     | Array<any> | undefined       | ['dd/MM/yyyy']     | array of optional arguments for pipe              |
 
-### MyPrimeTableClickCell Object -- 
+### MyPrimeTableClickCell Object -- Object returned by the onClick event of a cell
 
 | Name                     | Type                         | Example            | Description                                       |
 |--------------------------|------------------------------|--------------------|---------------------------------------------------|
 | keyValue                 | string                       | 'surname'          | name of property clicked on rows                  |
 | row                      | any                          | {surname:'WHITE',name:'PAUL'}  | object of the row containing the clicked cell     |
 
-### MyPrimeTableChangeCell Object -- 
+### MyPrimeTableChangeCell Object -- Object returned from the onChange event of a cell
 
 | Name                     | Type                         | Example            | Description                                       |
 |--------------------------|------------------------------|--------------------|---------------------------------------------------|
