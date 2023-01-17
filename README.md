@@ -61,7 +61,25 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 | falseValue               | string?                      | 'N'                | value for false on input switch                |
 | textColorFunc            | (row)=>any?                  | (row)=>row.id!==1 ? 'red' : null | works to decide the color of the text in the cell                     |
 
+### MyPrimeTablePipeItem Object -- Base configuration of pipe item
 
+| Name                     | Type                         | Example            | Description                                       |
+|--------------------------|------------------------------|--------------------|---------------------------------------------------|
+| pipe                     | PipeTransform                | new MyDatePipe()   | pipe to be applied to the output                  |
+| args                     | Array<any> | undefined       | ['dd/MM/yyyy']     | array of optional arguments for pipe              |
 
+### MyPrimeTableClickCell Object -- 
 
+| Name                     | Type                         | Example            | Description                                       |
+|--------------------------|------------------------------|--------------------|---------------------------------------------------|
+| keyValue                 | string                       | 'surname'          | name of property clicked on rows                  |
+| row                      | any                          | {surname:'WHITE',name:'PAUL'}  | object of the row containing the clicked cell     |
+
+### MyPrimeTableChangeCell Object -- 
+
+| Name                     | Type                         | Example            | Description                                       |
+|--------------------------|------------------------------|--------------------|---------------------------------------------------|
+| keyValue                 | string                       | 'surname'          | name of property clicked on rows                  |
+| row                      | any                          | {surname:'WHITE',name:'PAUL'}  | object of the row containing the clicked cell     |
+| list                     | any[]                        | [{surname:'WHITE',name:'PAUL'},{surname:'RED',name:'BOB'}] | list of objects representing the data of the whole table |
 
