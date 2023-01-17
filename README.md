@@ -36,9 +36,30 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 
 ### MyPrimeTableItem Object -- Base configuration of table item
 
-| Name                     | Type               | Example            | Description                                    |
-|--------------------------|--------------------|--------------------|------------------------------------------------|
-| label                    | string?            | 'surname'          | Title of column on header                      |
+| Name                     | Type                         | Example            | Description                                       |
+|--------------------------|------------------------------|--------------------|---------------------------------------------------|
+| label                    | string                       | 'Surname'          | title of column on header                         |
+| keyValue                 | string                       | 'surname'          | name of property on rows                          |
+| width                    | string?                      | '400px'            | optional width of column                          |
+| class                    | string?                      | 'text-right'       | css class of column                               |
+| pipes                    | Array<MyPrimeTablePipeItem>? | See doc below      | pipe array to transform the data output on table  |
+| xlsPipes                 | Array<MyPrimeTablePipeItem>? | See doc below      | pipe array to transform the data output on xls    |
+| onlyXls                  | boolean?                     | true               | column displayed only on xls                   |
+| onlyTable                | boolean?                     | true               | column displayed only on table                 |
+| isIcon                   | boolean?                     | true               | if the column displays an icon                 |
+| onClick                  | boolean?                     | true               | whether the onClick event should be thrown on the cell |
+| icon                     | string?                      | 'pi pi-file-pdf'   | icon displayed in the column                       |
+| iconFontSize             | string?                      | '1rem'             | icon font size                                 |
+| noSorting                | boolean?                     | true               | unsortable column                              |
+| isInputText              | boolean?                     | true               | column contains an input text                  |
+| inputTextDisableFunc     | (row)=>boolean?              | (row)=>row.id!==1  | function to disable input text on a certain cell  |
+| typeInputText            | string?                      | 'number'           | input text type                      |
+| placeholder              | string?                      | '__/__/____'       | placeholder for column with input text         |
+| isHiddenFunc             | (row)=>boolean?              | (row)=>row.id!==1  | function to hide the cell contents             |
+| isInputSwitch            | boolean?                     | true               | if column is input switch                      |
+| trueValue                | string?                      | 'Y'                | value for true on input switch                 |
+| falseValue               | string?                      | 'N'                | value for false on input switch                |
+| textColorFunc            | (row)=>any?                  | (row)=>row.id!==1 ? 'red' : null | works to decide the color of the text in the cell                     |
 
 
 
