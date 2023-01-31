@@ -7,6 +7,10 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 
 ## Documentation
 
+### Example of use of the component
+
+``<my-prime-table [list]="list" [(selectedList)]="selectedList" [prop]="myTable" (changeInput)="onChangeInput($event)" (clickGenericButton1)="salva()" (clickRowCell)="onClickRowPdf($event)" (changeInput)="onChangeInput($event)"></my-prime-table>``
+
 ### MyPrimeTable Object -- Base configuration of table
 
 | Name                     | Type               | Example            | Description                                    |
