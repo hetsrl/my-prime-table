@@ -34,6 +34,8 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   @Output() changeInput = new EventEmitter<any>();
 
+  @Output() changeSort = new EventEmitter<any>();
+
   @Output() clickGenericButton1 = new EventEmitter<any>();
 
   @Output() clickGenericButton2 = new EventEmitter<any>();
@@ -45,6 +47,10 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit(): void {
+  }
+
+  onSort(event) {
+    this.changeSort.emit(event);
   }
 
   onRowSelect(event) {
