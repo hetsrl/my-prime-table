@@ -9,7 +9,85 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 
 ### Example of use of the component
 
-``<my-prime-table [list]="list" [(selectedList)]="selectedList" [prop]="myTable" (changeInput)="onChangeInput($event)" (clickGenericButton1)="salva()" (clickRowCell)="onClickRowPdf($event)" (changeInput)="onChangeInput($event)"></my-prime-table>``
+#### Inside the html file
+``<my-prime-table [list]="list" [(selectedList)]="selectedList" [prop]="myTable" (changeInput)="onChangeInput($event)" (clickGenericButton1)="save()" (clickGenericButton2)="export()" (clickRowCell)="onClickRowPdf($event)" (changeInput)="onChangeInput($event)" (changeSort)="onChangeSort($event)"></my-prime-table>``
+
+#### Inside the ts file
+```javascript
+myTable: MyPrimeTable = {
+    noDataText: 'No data found!',
+    title: 'Item extraction',
+    genericButton1Enable: true,
+    genericButton1Icon: 'pi pi-save',
+    genericButton1Label: 'Save',
+    selectionDataKey: 'item_code',
+    isCheckable: true,
+    items: [
+      {
+        label: 'Item code',
+        keyValue: 'item code', 
+        class: "text-right",
+        isInputText: true,
+        typeInputText: 'text',
+        placeholder: '0',
+      },
+      {
+        label: 'Purchase date,
+        keyValue: 'purchase_date',
+        isInputText: true,
+        typeInputText: 'date',
+        placeholder: '__/__/____',
+        pipes: [new MyPrimeTablePipeItem(new MyDatePipe(),['dd/MM/yyyy'])],
+      },
+      {
+        label: 'Point of sale',
+        keyValue: 'pos_code',
+        class: "text-right",
+        textColorFunc: (row) => row['pos_close'] === 'NO' ? null : 'red',
+      },
+      {
+        label: 'Item price',
+        keyValue: 'item_price',
+        class: "text-right",
+        pipes: [new MyPrimeTablePipeItem(new CoalescePipe(),[0]), new MyPrimeTablePipeItem(new MyDecimalPipe(),['1.3-3'])],
+      },
+      {
+        label: '',
+        isIcon: true,
+        noSorting: true,
+        onClick: true,
+        icon: 'pi pi-external-link',
+        iconFontSize: '1rem',
+        keyValue: 'icon-detail',
+        class: "text-center",
+      },
+      {
+        label: 'Delivered',
+        keyValue: 'delivered',
+        isInputSwitch: true,
+        trueValue: "Y",
+        falseValue: "N",
+        class: "text-center",
+      },
+      {
+        label: 'Internal_code',
+        keyValue: 'internal_code',
+      },
+      {
+        label: '',
+        isIcon: true,
+        noSorting: true,
+        onClick: true,
+        icon: 'pi pi-pencil',
+        iconFontSize: '1rem',
+        keyValue: 'icon-internal_code',
+        class: "text-center",
+        isHiddenFunc: (row) => !!row['internal_code']
+      },
+
+    ]
+  }
+```
 
 ### MyPrimeTable Object -- Base configuration of table
 
@@ -63,7 +141,7 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 | isInputSwitch            | boolean?                     | true               | if column is input switch                      |
 | trueValue                | string?                      | 'Y'                | value for true on input switch                 |
 | falseValue               | string?                      | 'N'                | value for false on input switch                |
-| textColorFunc            | (row)=>any?                  | (row)=>row.id!==1 ? 'red' : null | works to decide the color of the text in the cell                     |
+| textColorFunc            | (row)=>any?                  | (row)=>row.id!==1 ? 'red' : null | works to decide the color of the text in the cell |
 
 ### MyPrimeTablePipeItem Object -- Base configuration of pipe item
 
