@@ -14,6 +14,8 @@ import { MyPrimeTable } from './model/MyPrimeTable';
 import { MyPrimeTableClickCell } from './model/MyPrimeTableClickCell';
 import { MyPrimeTableItem } from './model/MyPrimeTableItem';
 
+import * as Excel from "exceljs";
+
 @Component({
   selector: 'my-prime-table',
   templateUrl: './my-prime-table.component.html',
@@ -154,9 +156,7 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
        return obj;
     })
 
-    import('xlsx').then(xlsx => {
-
-        let filenameArray = [this.prop?.xlsPrefixFilename || '',
+            let filenameArray = [this.prop?.xlsPrefixFilename || '',
                               this.prop?.xlsTitle || '',
                               this.prop?.xlsSuffixFilenameWithDate ? '' + new Date().getTime() : '']
 
@@ -170,16 +170,62 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
           filename = "Report"
         }
 
-        const worksheet = xlsx.utils.json_to_sheet(estr);
-        const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-        const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-        const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-        const EXCEL_EXTENSION = '.xlsx';
-        const data: Blob = new Blob([excelBuffer], {
-            type: EXCEL_TYPE
-        });
-        FileSaver.saveAs(data, filename + EXCEL_EXTENSION);
-    });
+    const workbook = new Excel.Workbook();
+    const worksheet = workbook.addWorksheet('data');
+
+    const keys = Object.keys(estr[0]);
+
+    worksheet.columns = keys.map(e => {return { 'header': e, 'key': e }})
+
+    worksheet.getRow(1).font = {name: 'Calibri', bold: true}; //   { header: 'Id', key: 'id', width: 10 },
+
+    estr.forEach(row => worksheet.addRow(row))
+
+    const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const EXCEL_EXTENSION = '.xlsx';
+
+    workbook.xlsx.writeBuffer().then(data => {
+      const blob = new Blob([data], { type: EXCEL_TYPE });
+      FileSaver.saveAs(blob, filename + EXCEL_EXTENSION);
+     });
+
+
+//     import('xlsx').then(xlsx => {
+
+//         let filenameArray = [this.prop?.xlsPrefixFilename || '',
+//                               this.prop?.xlsTitle || '',
+//                               this.prop?.xlsSuffixFilenameWithDate ? '' + new Date().getTime() : '']
+
+//         filenameArray = filenameArray.filter(f=>!!f);
+
+//         let filename = ''
+//         if(filenameArray.length > 0){
+//           filename = filenameArray.join('_')
+//         }
+//         else{
+//           filename = "Report"
+//         }
+
+//         const worksheet = xlsx.utils.json_to_sheet(estr);
+
+//         // Selezione della prima riga e impostazione del font in grassetto
+// const firstRow = worksheet['1'];
+// for (let cell in firstRow) {
+//   if (cell.startsWith('A')) { // se la cella si trova nella prima colonna (A)
+//     const boldFont = {bold: true};
+//     firstRow[cell].s = boldFont; // imposta il font in grassetto sulla cella corrente
+//   }
+// }
+
+//         const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+//         const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+//         const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+//         const EXCEL_EXTENSION = '.xlsx';
+//         const data: Blob = new Blob([excelBuffer], {
+//             type: EXCEL_TYPE
+//         });
+//         FileSaver.saveAs(data, filename + EXCEL_EXTENSION);
+//     });
   }
 }
 
