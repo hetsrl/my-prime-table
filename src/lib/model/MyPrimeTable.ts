@@ -6,6 +6,7 @@ export class MyPrimeTable{
   xlsTitle?: string;
   xlsPrefixFilename?: string;
   xlsSuffixFilenameWithDate?: boolean;
+  xlsSheetName?: string;
   pdfEnable?: boolean;
   // pdfRowEnable?: boolean;
   items: MyPrimeTableItem[];

@@ -98,6 +98,7 @@ myTable: MyPrimeTable = {
 | xlsTitle                 | string?            | 'Items_export'     | name export xls                                | 
 | xlsPrefixFilename        | string?            | 'Report'           | prefix name export xls                         | 
 | xlsSuffixFilenameWithDate| boolean?           | true               | enable date suffix of name xls                 | 
+| xlsSheetName             | string?            | true               | name of the sheet inside the xls export        | 
 | pdfEnable                | boolean?           | true               | enable pdf export button on header             | 
 | items                    | MyPrimeTableItem[] | See doc below      | table column configuration objects list        | 
 | noPagination             | boolean?           | true               | disable table pagination                       | 
