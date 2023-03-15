@@ -170,24 +170,39 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
       filename = "Report"
     }
 
-    const workbook = new Excel.Workbook();
-    const worksheet = workbook.addWorksheet(this.prop?.xlsSheetName || 'Sheet1');
-
-    const keys = Object.keys(estr[0]);
-
-    worksheet.columns = keys.map(e => {return { 'header': e, 'key': e }})
-
-    worksheet.getRow(1).font = {name: 'Calibri', bold: true}; //{ header: 'Id', key: 'id', width: 10 },
-
-    estr.forEach(row => worksheet.addRow(row))
-
     const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     const EXCEL_EXTENSION = '.xlsx';
 
-    workbook.xlsx.writeBuffer().then(data => {
-      const blob = new Blob([data], { type: EXCEL_TYPE });
-      FileSaver.saveAs(blob, filename + EXCEL_EXTENSION);
-    });
+    if((this.prop?.xlsLibrary || 'xlsx') === 'exceljs'){
+
+      const workbook = new Excel.Workbook();
+      const worksheet = workbook.addWorksheet(this.prop?.xlsSheetName || 'Sheet1');
+      const keys = Object.keys(estr[0]);
+      worksheet.columns = keys.map(e => {return { 'header': e, 'key': e }})
+      worksheet.getRow(1).font = {name: 'Calibri', bold: true}; //{ header: 'Id', key: 'id', width: 10 },
+      estr.forEach(row => worksheet.addRow(row))
+      workbook.xlsx.writeBuffer().then(data => {
+        const blob = new Blob([data], { type: EXCEL_TYPE });
+        FileSaver.saveAs(blob, filename + EXCEL_EXTENSION);
+      });
+
+    }
+    else if((this.prop?.xlsLibrary || 'xlsx') === 'xlsx'){
+
+      import('xlsx').then(xlsx => {
+          const worksheet = xlsx.utils.json_to_sheet(estr);
+          const sheetname = this.prop?.xlsSheetName || 'Sheet1';
+          const sheetObj = {}
+          sheetObj[sheetname] = worksheet
+          const workbook = { Sheets: sheetObj, SheetNames: [sheetname] };
+          const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+          const data: Blob = new Blob([excelBuffer], {
+              type: EXCEL_TYPE
+          });
+          FileSaver.saveAs(data, filename + EXCEL_EXTENSION);
+      });
+
+    }
 
   }
 }

@@ -99,6 +99,7 @@ myTable: MyPrimeTable = {
 | xlsPrefixFilename        | string?            | 'Report'           | prefix name export xls                         | 
 | xlsSuffixFilenameWithDate| boolean?           | true               | enable date suffix of name xls                 | 
 | xlsSheetName             | string?            | true               | name of the sheet inside the xls export        | 
+| xlsLibrary               | string?            | 'xlsx' or 'exceljs' | name of npm library used for xls export       | 
 | pdfEnable                | boolean?           | true               | enable pdf export button on header             | 
 | items                    | MyPrimeTableItem[] | See doc below      | table column configuration objects list        | 
 | noPagination             | boolean?           | true               | disable table pagination                       | 
