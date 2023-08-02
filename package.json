@@ -1,6 +1,6 @@
 {
   "name": "my-prime-table",
-  "version": "14.2.12",
+  "version": "15.2.9",
   "author": {
     "name": "Matteo Alderighi @ H&T srl - Florence, Italy"
   },
@@ -17,19 +17,19 @@
   },
   "description": "Generic and reusable custom implementation of PrimeNG Table",
   "peerDependencies": {
-    "@angular/animations": "^14.2.12",
-    "@angular/cdk": "^14.2.7",
-    "@angular/common": "^14.2.12",
-    "@angular/compiler": "^14.2.12",
-    "@angular/core": "^14.2.12",
-    "@angular/forms": "^14.2.12",
-    "@angular/material": "^14.2.7",
-    "@angular/platform-browser": "^14.2.12",
-    "@angular/platform-browser-dynamic": "^14.2.12",
+    "@angular/animations": "^15.2.9",
+    "@angular/cdk": "^15.2.9",
+    "@angular/common": "^15.2.9",
+    "@angular/compiler": "^15.2.9",
+    "@angular/core": "^15.2.9",
+    "@angular/forms": "^15.2.9",
+    "@angular/material": "^15.2.9",
+    "@angular/platform-browser": "^15.2.9",
+    "@angular/platform-browser-dynamic": "^15.2.9",
     "file-saver": "^2.0.5",
     "primeflex": "^3.2.1",
     "primeicons": "^6.0.1",
-    "primeng": "^14.1.2",
+    "primeng": "^15.4.1",
     "exceljs": "^4.3.0",
     "xlsx": "^0.18.5"
   },
