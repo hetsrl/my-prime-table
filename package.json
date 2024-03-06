@@ -36,8 +36,5 @@
   },
   "dependencies": {
     "tslib": "^2.3.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.25"
   }
 }
