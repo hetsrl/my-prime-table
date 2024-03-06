@@ -1,6 +1,6 @@
 # MyPrimeTable
 
-Compatible with Angular 15
+Compatible with Angular 16
 
 Author: Matteo Alderighi - Software Developer @ H&T srl Florence, Italy - 2022
 GitHub: https://github.com/hetsrl/my-prime-table.git
