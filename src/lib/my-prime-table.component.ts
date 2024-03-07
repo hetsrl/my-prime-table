@@ -97,6 +97,12 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
     this.changeInput.emit(new MyPrimeTableChangeCell(row, keyValue, this.list));
   }
 
+  onKeyDown(event: KeyboardEvent, row, keyValue) {
+    if(event.key === 'Enter' || event.key === 'Escape' || event.key === 'Tab'){
+      this.changeInput.emit(new MyPrimeTableChangeCell(row, keyValue, this.list));
+    }
+  }
+
   onClickCell(row: any, keyValue: string){
     this.clickRowCell.emit(new MyPrimeTableClickCell(row, keyValue));
   }

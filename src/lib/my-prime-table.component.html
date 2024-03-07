@@ -67,7 +67,7 @@
                 <div [style]="item.width ? {'width': item.width} : {} ">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText [ngClass]="'p-inputtext-sm ' + (item.class || '')" class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (change)='onChangeInput(row, item.keyValue)'>
+                            <input pInputText [ngClass]="'p-inputtext-sm ' + (item.class || '')" class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (keydown)="onKeyDown($event, row, item.keyValue)" (change)='onChangeInput(row, item.keyValue)'>
                         </ng-template>
                         <ng-template pTemplate="output">
                             <span style="color:#3B82F6;">{{(getValue(row, item) || '') === '' ? (item.placeholder || '') : getValue(row, item)}}</span>
@@ -82,7 +82,7 @@
               </ng-template>
               <ng-template [ngIf]="item.isInputSwitch && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
-                  <p-inputSwitch [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (onChange)='onChangeInput(row, item.keyValue)'></p-inputSwitch>
+                  <p-inputSwitch [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (keydown)="onKeyDown($event, row, item.keyValue)" (onChange)='onChangeInput(row, item.keyValue)'></p-inputSwitch>
                 </div>
               </ng-template>
 

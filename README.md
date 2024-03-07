@@ -10,7 +10,7 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 ### Example of use of the component
 
 #### Inside the html file
-``<my-prime-table [list]="list" [(selectedList)]="selectedList" [prop]="myTable" (changeInput)="onChangeInput($event)" (clickGenericButton1)="save()" (clickGenericButton2)="export()" (clickRowCell)="onClickRowPdf($event)" (changeInput)="onChangeInput($event)" (changeSort)="onChangeSort($event)"></my-prime-table>``
+``<my-prime-table [list]="list" [(selectedList)]="selectedList" [prop]="myTable" (changeInput)="onChangeInput($event)" (clickGenericButton1)="save()" (clickGenericButton2)="export()" (clickRowCell)="onClickRowPdf($event)" (changeSort)="onChangeSort($event)"></my-prime-table>``
 
 #### Inside the ts file
 ```javascript
