@@ -9,6 +9,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import {InputTextModule} from 'primeng/inputtext';
 import {PanelModule} from 'primeng/panel';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
     InputTextModule,
     PanelModule,
     InputSwitchModule,
+    BrowserAnimationsModule,
   ],
   exports: [
     MyPrimeTableComponent,
