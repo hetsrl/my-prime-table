@@ -23,4 +23,19 @@ export class MyPrimeTableItem{
   trueValue?: string;
   falseValue?: string;
   textColorFunc?: (row) => any;
+
+  //accessibility
+  ariaLabel?:string;
+  ariaLabelledby?:string;
+  role?:string;
+  id?:string|number;
+  alt?:string;
+  sortIconAlt?:string;
+  sortIconRole?:string;
+  sortIconId?:string|number;
+  inputAlt?:string;
+  inputRole?:string;
+  inputId?:string|number;
+  inputAriaLabel?:string;
+  inputAriaLabelledby?:string;
 }

@@ -118,6 +118,25 @@ myTable: MyPrimeTable = {
 | isCheckable              | boolean?           | 'text-right'       | enable check on table                          |
 | isCheckHiddenFunc        | (row)=>boolean?    | (row)=>row.id===1  | function that decide when display check on row |
 
+##### MyPrimeTable Object -- Accessibility
+
+| Name                     | Type               | Example            | Description                                    |
+|--------------------------|--------------------|--------------------|------------------------------------------------|
+| ariaLabel                | string?            | 'Item'             | label for the table header for accessibility purposes |
+| ariaLabelledby           | string?            | 'id-1'             | references the ID of an element that labels the current element |
+| ariaColcount             | string?, number?   | '40'               | number of columns in the table |
+| ariaRowcount             | string?, number?   | '500'              | number of rows in the table |
+| role                     | string?            | 'img'              | role of the element for accessibility purposes |
+| id                       | string?, number?   | 'id-2'             | unique identifier for the element |
+| xlsButtonAriaLabel       | string?            | 'Excel button'     | accessible label for the button that exports data to an Excel file |
+| xlsButtonId              | string?, number?   | 'btn-id-1'         | unique ID to the Excel export button |
+| pdfButtonAriaLabel       | string?            | 'PDF button'       | accessible label for the button that exports data to a PDF file |
+| pdfButtonId              | string?, number?   | 'pdf-id-1'         | unique ID for the PDF export button |
+| genericButton1AriaLabel  | string?            | 'Items button'     | accessible label to the first generic button |
+| genericButton1Id         | string?, number?   | 'items-id-1'       | unique ID to the first generic button |
+| genericButton2AriaLabel  | string?            | 'Guests button'    | accessible label for the second generic button |
+| genericButton2Id         | string?, number?   | 'guests-id-1'      | unique identifier to the second generic button |
+
 ### MyPrimeTableItem Object -- Base configuration of table item
 
 | Name                     | Type                         | Example            | Description                                       |
@@ -144,6 +163,24 @@ myTable: MyPrimeTable = {
 | trueValue                | string?                      | 'Y'                | value for true on input switch                 |
 | falseValue               | string?                      | 'N'                | value for false on input switch                |
 | textColorFunc            | (row)=>any?                  | (row)=>row.id!==1 ? 'red' : null | works to decide the color of the text in the cell |
+
+##### MyPrimeTableItem Object -- Accessibility
+
+| Name                     | Type               | Example            | Description                                    |
+|--------------------------|--------------------|--------------------|------------------------------------------------|
+| ariaLabel                | string?            | 'Item'             | label for the table header for accessibility purposes |
+| ariaLabelledby           | string?            | 'id-1'             | references the ID of an element that labels the current element |
+| role                     | string?            | 'img'              | role of the element for accessibility purposes |
+| id                       | string?, number?   | 'id-2'             | unique identifier for the element |
+| alt                      | string?            | 'Excel icon'       | alternative text for the element |
+| sortIconAlt              | string?            | 'Sorting items'    | alternative text for the sorting icon |
+| sortIconRole             | string?            | 'img'              | role of the sorting icon as an image for accessibility purposes |
+| sortIconId               | string?, number?   | 'ico-id-1'         | unique ID to the sorting icon |
+| inputAlt                 | string?            | 'Input item'       | alternative text for an input element |
+| inputRole                | string?            | 'input'            | role for the input element |
+| inputId                  | string?, number?   | 'input-id-1'       | unique identifier for the input element |
+| inputAriaLabel           | string?            | 'Input item'       | accessible label for the input element |
+| inputAriaLabelledby      | string?            | 'id-1'             | references the ID of an element that labels the input |
 
 ### MyPrimeTablePipeItem Object -- Base configuration of pipe item
 

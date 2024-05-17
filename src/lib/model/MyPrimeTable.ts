@@ -31,4 +31,22 @@ export class MyPrimeTable{
 
   isCheckHiddenFunc?: (row) => boolean;
 
+  //accessibility
+  ariaLabel?:string;
+  ariaLabelledby?:string;
+  ariaColcount?:string|number;
+  ariaRowcount?:string|number;
+  role?:string;
+  id?:string|number;
+
+  xlsButtonAriaLabel?:string;
+  xlsButtonId?:string|number;
+  pdfButtonAriaLabel?:string;
+  pdfButtonId?:string|number;
+
+  genericButton1AriaLabel?:string;
+  genericButton1Id?:string|number;
+  genericButton2AriaLabel?:string;
+  genericButton2Id?:string|number;
+
 }

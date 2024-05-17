@@ -1,6 +1,17 @@
+<!-- caption?:string;-->
+
 <div class="grid" style="margin-top: 15px;overflow-x: auto;" *ngIf="showGlobal">
   <div class="lg:col-12">
-    <p-table [value]="list"
+    <p-table
+
+      [attr.aria-label]="prop.ariaLabel ? prop.ariaLabel : null"
+      [attr.aria-labelledby]="prop.ariaLabelledby ? prop.ariaLabelledby : null"
+      [attr.aria-colcountl]="prop.ariaColcount ? prop.ariaColcount : null"
+      [attr.aria-rowcount]="prop.ariaRowcount ? prop.ariaRowcount : null"
+      [attr.role]="prop.role ? prop.role : null"
+      [attr.id]="prop.id ? prop.id : null"
+
+      [value]="list"
       styleClass="p-datatable-sm p-datatable-striped"
       [paginator]="!prop.noPagination"
       responsiveLayout="scroll"
@@ -15,15 +26,23 @@
         <div class="grid align-items-center">
           <div [class]="prop.headerClassLeft || 'lg:col-2 md:col-3'">
             <button *ngIf="prop.xlsEnable" type="button" pButton icon="pi pi-file-excel" iconPos="left" label="Excel" (click)="exportExcel()"
+              [attr.aria-label]="prop.xlsButtonAriaLabel ? prop.xlsButtonAriaLabel : null"
+              [attr.id]="prop.xlsButtonId ? prop.xlsButtonId : null"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
             <button *ngIf="prop.pdfEnable" type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()"
+              [attr.aria-label]="prop.pdfButtonAriaLabel ? prop.pdfButtonAriaLabel : null"
+              [attr.id]="prop.pdfButtonId ? prop.pdfButtonId : null"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
             <button *ngIf="prop.genericButton1Enable" type="button" pButton [icon]="prop.genericButton1Icon" iconPos="left" [label]="prop.genericButton1Label" (click)="onClickGB1()"
+              [attr.aria-label]="prop.genericButton1AriaLabel ? prop.genericButton1AriaLabel : null"
+              [attr.id]="prop.genericButton1Id ? prop.genericButton1Id : null"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
             <button *ngIf="prop.genericButton2Enable" type="button" pButton [icon]="prop.genericButton2Icon" iconPos="left" [label]="prop.genericButton2Label" (click)="onClickGB2()"
+              [attr.aria-label]="prop.genericButton2AriaLabel ? prop.genericButton2AriaLabel : null"
+              [attr.id]="prop.genericButton2Id ? prop.genericButton2Id : null"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
           </div>
@@ -45,7 +64,12 @@
             </ng-template>
             <ng-template #elseBlock>
               <div [style]="item.width ? {'width': item.width} : {} ">
-                {{item.label}} <p-sortIcon [field]="item.keyValue"></p-sortIcon>
+                {{item.label}} <p-sortIcon
+                                  [attr.alt]="item.sortIconAlt ? item.sortIconAlt : null"
+                                  [attr.role]="item.sortIconRole ? item.sortIconRole : null"
+                                  [attr.id]="item.sortIconId ? item.sortIconId : null"
+                                  [field]="item.keyValue">
+                                </p-sortIcon>
               </div>
             </ng-template>
           </th>
@@ -60,29 +84,59 @@
             <span>
               <ng-template [ngIf]="!item.isInputSwitch && item.isIcon && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
-                  <i [ngClass]="item.icon" [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
+                  <i [ngClass]="item.icon"
+                  [attr.alt]="item.alt ? item.alt : null"
+                  [attr.role]="item.role ? item.role : null"
+                  [attr.id]="item.id ? item.id : null"
+                  [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
+                  [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
+                  [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
                 </div>
               </ng-template>
               <ng-template [ngIf]="!item.isInputSwitch && !item.isIcon && item.isInputText && !(item.inputTextDisableFunc && item.inputTextDisableFunc(row)) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText [ngClass]="'p-inputtext-sm ' + (item.class || '')" class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (keydown)="onKeyDown($event, row, item.keyValue)" (change)='onChangeInput(row, item.keyValue)'>
+                            <input
+                            [attr.alt]="item.inputAlt ? item.inputAlt : null"
+                            [attr.role]="item.inputRole ? item.inputRole : null"
+                            [attr.id]="item.id ? item.inputId : null"
+                            [attr.aria-label]="item.inputAriaLabel ? item.inputAriaLabel : null"
+                            [attr.aria-labelledby]="item.inputAriaLabelledby ? item.inputAriaLabelledby : null"
+                            pInputText [ngClass]="'p-inputtext-sm ' + (item.class || '')" class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (keydown)="onKeyDown($event, row, item.keyValue)" (change)='onChangeInput(row, item.keyValue)'>
                         </ng-template>
                         <ng-template pTemplate="output">
-                            <span style="color:#3B82F6;">{{(getValue(row, item) || '') === '' ? (item.placeholder || '') : getValue(row, item)}}</span>
+                            <span
+                            [attr.alt]="item.alt ? item.alt : null"
+                            [attr.role]="item.role ? item.role : null"
+                            [attr.id]="item.id ? item.id : null"
+                            [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
+                            [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
+                            style="color:#3B82F6;">{{(getValue(row, item) || '') === '' ? (item.placeholder || '') : getValue(row, item)}}</span>
                         </ng-template>
                     </p-cellEditor>
                 </div>
               </ng-template>
               <ng-template [ngIf]="!item.isInputSwitch && !item.isIcon && (!item.isInputText || (item.inputTextDisableFunc && item.inputTextDisableFunc(row))) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
-                <div [style]="item.width ? {'width': item.width, 'color': item.textColorFunc ? item.textColorFunc(row) : null} : {'color': item.textColorFunc ? item.textColorFunc(row) : null} ">
+                <div [style]="item.width ? {'width': item.width, 'color': item.textColorFunc ? item.textColorFunc(row) : null} : {'color': item.textColorFunc ? item.textColorFunc(row) : null} "
+                  [attr.alt]="item.alt ? item.alt : null"
+                  [attr.role]="item.role ? item.role : null"
+                  [attr.id]="item.id ? item.id : null"
+                  [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
+                  [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
+                >
                   {{getValue(row, item)}}
                 </div>
               </ng-template>
               <ng-template [ngIf]="item.isInputSwitch && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
-                  <p-inputSwitch [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (keydown)="onKeyDown($event, row, item.keyValue)" (onChange)='onChangeInput(row, item.keyValue)'></p-inputSwitch>
+                  <p-inputSwitch
+                  [attr.alt]="item.alt ? item.alt : null"
+                  [attr.role]="item.role ? item.role : null"
+                  [attr.id]="item.id ? item.id : null"
+                  [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
+                  [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
+                  [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (keydown)="onKeyDown($event, row, item.keyValue)" (onChange)='onChangeInput(row, item.keyValue)'></p-inputSwitch>
                 </div>
               </ng-template>
 
