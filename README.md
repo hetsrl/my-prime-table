@@ -117,6 +117,7 @@ myTable: MyPrimeTable = {
 | selectionDataKey         | string?            | 'text-right'       | dataKey name of row object on table for check  |
 | isCheckable              | boolean?           | 'text-right'       | enable check on table                          |
 | isCheckHiddenFunc        | (row)=>boolean?    | (row)=>row.id===1  | function that decide when display check on row |
+| isGlobalCheckHiddenFunc  | (row)=>boolean?    | (row)=>state=='A'  | function that decide when display global check |
 
 ##### MyPrimeTable Object -- Accessibility
 
@@ -136,6 +137,7 @@ myTable: MyPrimeTable = {
 | genericButton1Id         | string?, number?   | 'items-id-1'       | unique ID to the first generic button |
 | genericButton2AriaLabel  | string?            | 'Guests button'    | accessible label for the second generic button |
 | genericButton2Id         | string?, number?   | 'guests-id-1'      | unique identifier to the second generic button |
+| checkId                  | string?, number?   | 'check-id-1'       | unique identifier for the check |
 
 ### MyPrimeTableItem Object -- Base configuration of table item
 

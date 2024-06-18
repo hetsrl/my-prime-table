@@ -54,10 +54,14 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 4rem" *ngIf="prop.isCheckable">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          <th style="width: 4rem" *ngIf="prop.isCheckable" [attr.id]="prop.checkId ? prop.checkId + '_th' : 'check_th'">
+            <p-tableHeaderCheckbox [attr.id]="prop.checkId ? prop.checkId + '_global' : null" [hidden]="prop.isGlobalCheckHiddenFunc && prop.isGlobalCheckHiddenFunc()"></p-tableHeaderCheckbox>
           </th>
-          <th *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch) ? null : item.keyValue" [ngClass]="item.class">
+          <th *ngFor="let item of getItemsTable(); index as i; first as isFirst"
+            [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch) ? null : item.keyValue"
+            [ngClass]="item.class"
+            [attr.id]="prop.id ? prop.id + '_' + i + '_th' : i + '_th'"
+          >
             <ng-template [ngIf]="item.noSorting || item.isInputText || item.isInputSwitch" [ngIfElse]="elseBlock">
               <div [style]="item.width ? {'width': item.width} : {} ">
                 {{item.label}}
@@ -76,10 +80,10 @@
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-row>
+      <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
         <tr>
           <td *ngIf="prop.isCheckable">
-            <p-tableCheckbox [value]="row" [hidden]="prop.isCheckHiddenFunc && prop.isCheckHiddenFunc(row)"></p-tableCheckbox>
+            <p-tableCheckbox [value]="row" [hidden]="prop.isCheckHiddenFunc && prop.isCheckHiddenFunc(row)" [attr.id]="prop.checkId ? prop.checkId + '_' + rowIndex : null"></p-tableCheckbox>
           </td>
           <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
             <span>
@@ -88,7 +92,7 @@
                   <i [ngClass]="item.icon"
                   [attr.alt]="item.alt ? item.alt : null"
                   [attr.role]="item.role ? item.role : null"
-                  [attr.id]="item.id ? item.id : null"
+                  [attr.id]="item.id ? item.id + '_' + rowIndex : null"
                   [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
                   [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
                   [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
@@ -101,7 +105,7 @@
                             <input
                             [attr.alt]="item.inputAlt ? item.inputAlt : null"
                             [attr.role]="item.inputRole ? item.inputRole : null"
-                            [attr.id]="item.id ? item.inputId : null"
+                            [attr.id]="item.inputId ? item.inputId + '_' + rowIndex : null"
                             [attr.aria-label]="item.inputAriaLabel ? item.inputAriaLabel : null"
                             [attr.aria-labelledby]="item.inputAriaLabelledby ? item.inputAriaLabelledby : null"
                             pInputText [ngClass]="'p-inputtext-sm ' + (item.class || '')" class="p-inputtext-sm" [type]="item.typeInputText || 'text'" [(ngModel)]="row[item.keyValue]" [placeholder]="item.placeholder || ''" (keydown)="onKeyDown($event, row, item.keyValue)" (change)='onChangeInput(row, item.keyValue)'>
@@ -110,7 +114,7 @@
                             <span
                             [attr.alt]="item.alt ? item.alt : null"
                             [attr.role]="item.role ? item.role : null"
-                            [attr.id]="item.id ? item.id : null"
+                            [attr.id]="item.id ? item.id + '_' + rowIndex : null"
                             [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
                             [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
                             style="color:#3B82F6;">{{(getValue(row, item) || '') === '' ? (item.placeholder || '') : getValue(row, item)}}</span>
@@ -122,7 +126,7 @@
                 <div [style]="item.width ? {'width': item.width, 'color': item.textColorFunc ? item.textColorFunc(row) : null} : {'color': item.textColorFunc ? item.textColorFunc(row) : null} "
                   [attr.alt]="item.alt ? item.alt : null"
                   [attr.role]="item.role ? item.role : null"
-                  [attr.id]="item.id ? item.id : null"
+                  [attr.id]="item.id ? item.id + '_' + rowIndex : null"
                   [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
                   [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
                 >
@@ -134,7 +138,7 @@
                   <p-inputSwitch
                   [attr.alt]="item.alt ? item.alt : null"
                   [attr.role]="item.role ? item.role : null"
-                  [attr.id]="item.id ? item.id : null"
+                  [attr.id]="item.id ? item.id + '_' + rowIndex : null"
                   [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
                   [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
                   [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (keydown)="onKeyDown($event, row, item.keyValue)" (onChange)='onChangeInput(row, item.keyValue)'></p-inputSwitch>

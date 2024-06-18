@@ -30,6 +30,7 @@ export class MyPrimeTable{
   isCheckable?: boolean;
 
   isCheckHiddenFunc?: (row) => boolean;
+  isGlobalCheckHiddenFunc?: () => boolean;
 
   //accessibility
   ariaLabel?:string;
@@ -48,5 +49,7 @@ export class MyPrimeTable{
   genericButton1Id?:string|number;
   genericButton2AriaLabel?:string;
   genericButton2Id?:string|number;
+
+  checkId?:string|number;
 
 }
