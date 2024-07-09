@@ -106,12 +106,24 @@ myTable: MyPrimeTable = {
 | rowsPerPageOptions       | number[]?          | [5,10,15]          | list options rows per page of table            | 
 | rows                     | number?            | 10                 | default number of rows per page tables         | 
 | noDataText               | string?            | 'No data found'    | text displayed when data not found             |
-| genericButton1Enable     | boolean?           | true               | enable first button on table header            |
-| genericButton1Icon       | string?            | 'pi pi-save'       | icon name of first button                      |
-| genericButton1Label      | string?            | 'Save'             | label text of first button                     |
-| genericButton2Enable     | boolean?           | true               | enable second button on table header           |
-| genericButton2Icon       | string?            | 'pi pi-trash'      | icon name of second button                     |
-| genericButton2Label      | string?            | 'Delete'           | label text of second button                    |
+| genericButton1Enable      | boolean?           | true                | enable the first button in the table header     |
+| genericButton1Icon        | string?            | 'pi pi-save'        | icon name for the first button                  |
+| genericButton1Label       | string?            | 'Save'              | label text for the first button                 |
+| genericButton2Enable      | boolean?           | true                | enable the second button in the table header    |
+| genericButton2Icon        | string?            | 'pi pi-trash'       | icon name for the second button                 |
+| genericButton2Label       | string?            | 'Delete'            | label text for the second button                |
+| genericButton3Enable      | boolean?           | true                | enable the third button in the table header     |
+| genericButton3Icon        | string?            | ''                  | icon name for the third button                  |
+| genericButton3Label       | string?            | ''                  | label text for the third button                 |
+| genericButton4Enable      | boolean?           | true                | enable the fourth button in the table header    |
+| genericButton4Icon        | string?            | ''                  | icon name for the fourth button                 |
+| genericButton4Label       | string?            | ''                  | label text for the fourth button                |
+| genericButton5Enable      | boolean?           | true                | enable the fifth button in the table header     |
+| genericButton5Icon        | string?            | ''                  | icon name for the fifth button                  |
+| genericButton5Label       | string?            | ''                  | label text for the fifth button                 |
+| genericButton6Enable      | boolean?           | true                | enable the sixth button in the table header     |
+| genericButton6Icon        | string?            | ''                  | icon name for the sixth button                  |
+| genericButton6Label       | string?            | ''                  | label text for the sixth button                 |
 | headerClassLeft          | string?            | 'text-right'       | css class left header section                  |
 | headerClassCenter        | string?            | 'text-right'       | css class center header section                |
 | selectionDataKey         | string?            | 'text-right'       | dataKey name of row object on table for check  |
@@ -133,10 +145,18 @@ myTable: MyPrimeTable = {
 | xlsButtonId              | string?, number?   | 'btn-id-1'         | unique ID to the Excel export button |
 | pdfButtonAriaLabel       | string?            | 'PDF button'       | accessible label for the button that exports data to a PDF file |
 | pdfButtonId              | string?, number?   | 'pdf-id-1'         | unique ID for the PDF export button |
-| genericButton1AriaLabel  | string?            | 'Items button'     | accessible label to the first generic button |
-| genericButton1Id         | string?, number?   | 'items-id-1'       | unique ID to the first generic button |
-| genericButton2AriaLabel  | string?            | 'Guests button'    | accessible label for the second generic button |
-| genericButton2Id         | string?, number?   | 'guests-id-1'      | unique identifier to the second generic button |
+| genericButton1AriaLabel   | string?            | 'Items button'      | accessible label to the first generic button        |
+| genericButton1Id          | string?, number?   | 'items-id-1'        | unique ID to the first generic button               |
+| genericButton2AriaLabel   | string?            | 'Guests button'     | accessible label for the second generic button      |
+| genericButton2Id          | string?, number?   | 'guests-id-1'       | unique ID to the second generic button      |
+| genericButton3AriaLabel   | string?            | ''                  | accessible label for the third generic button       |
+| genericButton3Id          | string?, number?   | ''                  | unique ID to the third generic button       |
+| genericButton4AriaLabel   | string?            | ''                  | accessible label for the fourth generic button      |
+| genericButton4Id          | string?, number?   | ''                  | unique ID to the fourth generic button      |
+| genericButton5AriaLabel   | string?            | ''                  | accessible label for the fifth generic button       |
+| genericButton5Id          | string?, number?   | ''                  | unique ID to the fifth generic button       |
+| genericButton6AriaLabel   | string?            | ''                  | accessible label for the sixth generic button       |
+| genericButton6Id          | string?, number?   | ''                  | unique ID to the sixth generic button       |
 | checkId                  | string?, number?   | 'check-id-1'       | unique identifier for the check |
 
 ### MyPrimeTableItem Object -- Base configuration of table item

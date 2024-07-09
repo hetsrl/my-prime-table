@@ -46,6 +46,26 @@
               [attr.id]="prop.genericButton2Id ? prop.genericButton2Id : null"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
+            <button *ngIf="prop.genericButton3Enable" type="button" pButton [icon]="prop.genericButton3Icon" iconPos="left" [label]="prop.genericButton3Label" (click)="onClickGB3()"
+              [attr.aria-label]="prop.genericButton3AriaLabel ? prop.genericButton3AriaLabel : null"
+              [attr.id]="prop.genericButton3Id ? prop.genericButton3Id : null"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
+            <button *ngIf="prop.genericButton4Enable" type="button" pButton [icon]="prop.genericButton4Icon" iconPos="left" [label]="prop.genericButton4Label" (click)="onClickGB4()"
+              [attr.aria-label]="prop.genericButton4AriaLabel ? prop.genericButton4AriaLabel : null"
+              [attr.id]="prop.genericButton4Id ? prop.genericButton4Id : null"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
+            <button *ngIf="prop.genericButton5Enable" type="button" pButton [icon]="prop.genericButton5Icon" iconPos="left" [label]="prop.genericButton5Label" (click)="onClickGB5()"
+              [attr.aria-label]="prop.genericButton5AriaLabel ? prop.genericButton5AriaLabel : null"
+              [attr.id]="prop.genericButton5Id ? prop.genericButton5Id : null"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
+            <button *ngIf="prop.genericButton6Enable" type="button" pButton [icon]="prop.genericButton6Icon" iconPos="left" [label]="prop.genericButton6Label" (click)="onClickGB6()"
+              [attr.aria-label]="prop.genericButton6AriaLabel ? prop.genericButton6AriaLabel : null"
+              [attr.id]="prop.genericButton6Id ? prop.genericButton6Id : null"
+              class="p-button-sm p-button-outlined ui-button-success m-1">
+            </button>
           </div>
           <div [class]="prop.headerClassCenter || 'lg:col-8 md:col-6'">
               <div class="text-center">{{prop?.title || ''}}</div>

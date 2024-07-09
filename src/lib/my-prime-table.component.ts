@@ -39,8 +39,11 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   @Output() changeSort = new EventEmitter<any>();
 
   @Output() clickGenericButton1 = new EventEmitter<any>();
-
   @Output() clickGenericButton2 = new EventEmitter<any>();
+  @Output() clickGenericButton3 = new EventEmitter<any>();
+  @Output() clickGenericButton4 = new EventEmitter<any>();
+  @Output() clickGenericButton5 = new EventEmitter<any>();
+  @Output() clickGenericButton6 = new EventEmitter<any>();
 
   //showGlobal = false;
 
@@ -68,7 +71,11 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   }
 
   getShowCaption(){
-    return !!this.list && this.list.length > 0 && !!this.prop && (!!this.prop.xlsEnable || !!this.prop.pdfEnable || !!this.prop.title)
+    return !!this.list && this.list.length > 0 && !!this.prop &&
+          (!!this.prop.xlsEnable || !!this.prop.pdfEnable || !!this.prop.title ||
+            !!this.prop.genericButton1Enable || !!this.prop.genericButton2Enable || !!this.prop.genericButton3Enable || !!this.prop.genericButton4Enable
+            || !!this.prop.genericButton5Enable || !!this.prop.genericButton6Enable
+          )
   }
 
   getRowsPerPageOptions(){
@@ -113,6 +120,22 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   onClickGB2(){
     this.clickGenericButton2.emit();
+  }
+
+  onClickGB3(){
+    this.clickGenericButton3.emit();
+  }
+
+  onClickGB4(){
+    this.clickGenericButton4.emit();
+  }
+
+  onClickGB5(){
+    this.clickGenericButton5.emit();
+  }
+
+  onClickGB6(){
+    this.clickGenericButton6.emit();
   }
 
   exportPdf() {
