@@ -15,6 +15,9 @@ export class MyPrimeTable{
   rows?: number;
   noDataText?: string;
 
+  selectionMode?: "single" | "multiple";
+  metaKeySelection?: string;
+
   genericButton1Enable?: boolean;
   genericButton1Icon?: string;
   genericButton1Label?: string;

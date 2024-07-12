@@ -21,6 +21,8 @@
       (onSort)="onSort($event)"
       (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event)"
       [(selection)]="selectedList"
+      [selectionMode]="prop.selectionMode"
+      [metaKeySelection]="prop.metaKeySelection"
       [dataKey]="prop.selectionDataKey || null"
       [rows]="getRows()" [totalRecords]="list.length" [rowsPerPageOptions]="getRowsPerPageOptions()">
       <ng-template pTemplate="caption" *ngIf="getShowCaption()">
@@ -101,7 +103,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
-        <tr>
+        <tr [pSelectableRow]="row">
           <td *ngIf="prop.isCheckable">
             <p-tableCheckbox [value]="row" [hidden]="prop.isCheckHiddenFunc && prop.isCheckHiddenFunc(row)" [attr.id]="prop.checkId ? prop.checkId + '_' + rowIndex : null"></p-tableCheckbox>
           </td>

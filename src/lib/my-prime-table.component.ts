@@ -25,8 +25,9 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   @Input() list: any[] = [];
 
-  @Input() selectedList: any[] = [];
-  @Output() selectedListChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Input() selectedList: any;
+
+  @Output() selectedListChange: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() prop: MyPrimeTable | undefined;
 
@@ -38,6 +39,10 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   @Output() changeSort = new EventEmitter<any>();
 
+  @Output() rowSelect = new EventEmitter<any>();
+  @Output() rowUnselect = new EventEmitter<any>();
+  @Output() headerCheckboxToggle = new EventEmitter<any>();
+
   @Output() clickGenericButton1 = new EventEmitter<any>();
   @Output() clickGenericButton2 = new EventEmitter<any>();
   @Output() clickGenericButton3 = new EventEmitter<any>();
@@ -45,13 +50,12 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   @Output() clickGenericButton5 = new EventEmitter<any>();
   @Output() clickGenericButton6 = new EventEmitter<any>();
 
-  //showGlobal = false;
-
   showGlobal = true;
 
   constructor() {}
 
   ngOnInit(): void {
+
   }
 
   onSort(event) {
@@ -60,14 +64,17 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   onRowSelect(event) {
     this.selectedListChange.emit(this.selectedList);
+    this.rowSelect.emit(event);
   }
 
   onRowUnselect(event) {
     this.selectedListChange.emit(this.selectedList);
+    this.rowUnselect.emit(event);
   }
 
   onHeaderCheckboxToggle(event) {
     this.selectedListChange.emit(this.selectedList);
+    this.headerCheckboxToggle.emit(event);
   }
 
   getShowCaption(){
@@ -91,9 +98,7 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // this.showGlobal = false;
-    // setTimeout(() =>{this.showGlobal = true})
-    // console.log("ngOnChanges")
+
   }
 
   getItemsTable(){

@@ -10,7 +10,21 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 ### Example of use of the component
 
 #### Inside the html file
-``<my-prime-table [list]="list" [(selectedList)]="selectedList" [prop]="myTable" (changeInput)="onChangeInput($event)" (clickGenericButton1)="save()" (clickGenericButton2)="export()" (clickRowCell)="onClickRowPdf($event)" (changeSort)="onChangeSort($event)"></my-prime-table>``
+```html
+<my-prime-table 
+  [list]="list" 
+  [(selectedList)]="selectedList" 
+  [prop]="myTable" 
+  (changeInput)="onChangeInput($event)" 
+  (clickGenericButton1)="save()" 
+  (clickGenericButton2)="export()" 
+  (clickRowCell)="onClickRowPdf($event)" 
+  (changeSort)="onChangeSort($event)"
+  (rowSelect)="onRowSelect($event)"
+  (rowUnselect)="onRowUnselect($event)"
+  (headerCheckboxToggle)="onHeaderCT($event)"
+
+></my-prime-table>``
 
 #### Inside the ts file
 ```javascript
@@ -105,6 +119,8 @@ myTable: MyPrimeTable = {
 | noPagination             | boolean?           | true               | disable table pagination                       | 
 | rowsPerPageOptions       | number[]?          | [5,10,15]          | list options rows per page of table            | 
 | rows                     | number?            | 10                 | default number of rows per page tables         | 
+| metaKeySelection         | string?            | id                 | metakey selection                              | 
+| selectionMode            | "single", "multiple"   | "single"            | type of selection        | 
 | noDataText               | string?            | 'No data found'    | text displayed when data not found             |
 | genericButton1Enable      | boolean?           | true                | enable the first button in the table header     |
 | genericButton1Icon        | string?            | 'pi pi-save'        | icon name for the first button                  |
