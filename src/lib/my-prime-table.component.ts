@@ -25,8 +25,14 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   @Input() list: any[] = [];
 
+  @Input() set selected(value: any) {
+    this.selectedList = value;
+  }
+  get selected(): any {
+    return this.selectedList;
+  }
   @Input() selectedList: any;
-
+  @Output() selectedChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() selectedListChange: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() prop: MyPrimeTable | undefined;
@@ -64,16 +70,19 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
 
   onRowSelect(event) {
     this.selectedListChange.emit(this.selectedList);
+    this.selectedChange.emit(this.selectedList);
     this.rowSelect.emit(event);
   }
 
   onRowUnselect(event) {
     this.selectedListChange.emit(this.selectedList);
+    this.selectedChange.emit(this.selectedList);
     this.rowUnselect.emit(event);
   }
 
   onHeaderCheckboxToggle(event) {
     this.selectedListChange.emit(this.selectedList);
+    this.selectedChange.emit(this.selectedList);
     this.headerCheckboxToggle.emit(event);
   }
 

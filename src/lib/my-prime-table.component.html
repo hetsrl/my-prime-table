@@ -103,7 +103,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
-        <tr [pSelectableRow]="row">
+        <tr [pSelectableRow]="prop.isCheckable ? null : row">
           <td *ngIf="prop.isCheckable">
             <p-tableCheckbox [value]="row" [hidden]="prop.isCheckHiddenFunc && prop.isCheckHiddenFunc(row)" [attr.id]="prop.checkId ? prop.checkId + '_' + rowIndex : null"></p-tableCheckbox>
           </td>

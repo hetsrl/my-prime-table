@@ -14,6 +14,7 @@ GitHub: https://github.com/hetsrl/my-prime-table.git
 <my-prime-table 
   [list]="list" 
   [(selectedList)]="selectedList" 
+  [(selected)]="selected" 
   [prop]="myTable" 
   (changeInput)="onChangeInput($event)" 
   (clickGenericButton1)="save()" 
