@@ -123,6 +123,7 @@ myTable: MyPrimeTable = {
 | metaKeySelection         | string?            | id                 | metakey selection                              | 
 | selectionMode            | "single", "multiple"   | "single"            | type of selection        | 
 | noDataText               | string?            | 'No data found'    | text displayed when data not found             |
+| styleClass               | string?            | 'p-datatable-sm p-datatable-striped'    | style of table            |
 | genericButton1Enable      | boolean?           | true                | enable the first button in the table header     |
 | genericButton1Icon        | string?            | 'pi pi-save'        | icon name for the first button                  |
 | genericButton1Label       | string?            | 'Save'              | label text for the first button                 |
@@ -147,6 +148,13 @@ myTable: MyPrimeTable = {
 | isCheckable              | boolean?           | 'text-right'       | enable check on table                          |
 | isCheckHiddenFunc        | (row)=>boolean?    | (row)=>row.id===1  | function that decide when display check on row |
 | isGlobalCheckHiddenFunc  | (row)=>boolean?    | (row)=>state=='A'  | function that decide when display global check |
+| isRowGroupSubheaderTable       | boolean?            | true                  | enable row group subheader on table                 |
+| sortField                      | string?            | 'name'                  | name of property for sort on table with row group subheader               |
+| scrollHeight                   | string?            | '40vh'                  | height of table with row group subheader               |
+| groupRowsBy                    | string?            | 'name'                  | name of property for group by on table with row group subheader                |
+| groupHeaderClass               | string?            | 'font-bold ml-2'                  | css class for group header on table with row group subheader                |
+| groupRowsFooterClass           | string?            | 'text-right font-bold pr-6'                  | css class for group rows footer on table with row group subheader                |
+| groupRowsFooter                | string?            | 'name'                  | name of property for group rows footer on table with row group subheader                |
 
 ##### MyPrimeTable Object -- Accessibility
 

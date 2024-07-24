@@ -14,6 +14,15 @@ export class MyPrimeTable{
   rowsPerPageOptions?: number[];
   rows?: number;
   noDataText?: string;
+  styleClass?: string;
+
+  isRowGroupSubheaderTable?: boolean;
+  sortField?: string;
+  scrollHeight?: string;
+  groupRowsBy?: string;
+  groupHeaderClass?: string;
+  groupRowsFooterClass?: string;
+  groupRowsFooter?: string;
 
   selectionMode?: "single" | "multiple";
   metaKeySelection?: string;

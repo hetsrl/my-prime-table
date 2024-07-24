@@ -11,9 +11,16 @@
       [attr.role]="prop.role ? prop.role : null"
       [attr.id]="prop.id ? prop.id : null"
 
+      [scrollable]="prop.isRowGroupSubheaderTable ? true : false"
+      [sortField]="prop.isRowGroupSubheaderTable ? prop.sortField : null"
+      [sortMode]="prop.isRowGroupSubheaderTable ? 'single' : null"
+      [scrollHeight]="prop.isRowGroupSubheaderTable ? prop.scrollHeight : null"
+      [rowGroupMode]="prop.isRowGroupSubheaderTable ? 'subheader' : null"
+      [groupRowsBy]="prop.isRowGroupSubheaderTable ? prop.groupRowsBy : null"
+
       [value]="list"
-      styleClass="p-datatable-sm p-datatable-striped"
-      [paginator]="!prop.noPagination"
+      [styleClass]="prop.styleClass || 'p-datatable-sm p-datatable-striped'"
+      [paginator]="!prop.noPagination && !prop.isRowGroupSubheaderTable"
       paginatorDropdownAppendTo="body"
       responsiveLayout="scroll"
       (onRowSelect)="onRowSelect($event)"
@@ -24,7 +31,10 @@
       [selectionMode]="prop.selectionMode"
       [metaKeySelection]="prop.metaKeySelection"
       [dataKey]="prop.selectionDataKey || null"
-      [rows]="getRows()" [totalRecords]="list.length" [rowsPerPageOptions]="getRowsPerPageOptions()">
+      [rows]="getRows()"
+      [totalRecords]="list.length"
+      [rowsPerPageOptions]="getRowsPerPageOptions()"
+      >
       <ng-template pTemplate="caption" *ngIf="getShowCaption()">
         <div class="grid align-items-center">
           <div [class]="prop.headerClassLeft || 'lg:col-2 md:col-3'">
@@ -80,11 +90,11 @@
             <p-tableHeaderCheckbox [attr.id]="prop.checkId ? prop.checkId + '_global' : null" [hidden]="prop.isGlobalCheckHiddenFunc && prop.isGlobalCheckHiddenFunc()"></p-tableHeaderCheckbox>
           </th>
           <th *ngFor="let item of getItemsTable(); index as i; first as isFirst"
-            [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch) ? null : item.keyValue"
+            [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch || prop.isRowGroupSubheaderTable) ? null : item.keyValue"
             [ngClass]="item.class"
             [attr.id]="prop.id ? prop.id + '_' + i + '_th' : i + '_th'"
           >
-            <ng-template [ngIf]="item.noSorting || item.isInputText || item.isInputSwitch" [ngIfElse]="elseBlock">
+            <ng-template [ngIf]="item.noSorting || item.isInputText || item.isInputSwitch || prop.isRowGroupSubheaderTable" [ngIfElse]="elseBlock">
               <div [style]="item.width ? {'width': item.width} : {} ">
                 {{item.label}}
               </div>
@@ -102,6 +112,15 @@
           </th>
         </tr>
       </ng-template>
+
+      <ng-template pTemplate="groupheader" let-item [ngIf]="prop.isRowGroupSubheaderTable">
+          <tr pRowGroupHeader>
+              <td [attr.colspan]="getItemsTable().length + (prop.isCheckable ? 1 : 0)">
+                  <span [class]="prop.groupHeaderClass ||'font-bold ml-2'">{{item[prop.groupRowsBy]}}</span>
+              </td>
+          </tr>
+      </ng-template>
+
       <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
         <tr [pSelectableRow]="prop.isCheckable ? null : row">
           <td *ngIf="prop.isCheckable">
@@ -171,6 +190,15 @@
           </td>
         </tr>
       </ng-template>
+
+      <ng-template pTemplate="groupfooter" let-item [ngIf]="prop.isRowGroupSubheaderTable && prop.groupRowsFooter">
+        <tr>
+            <td [attr.colspan]="getItemsTable().length + (prop.isCheckable ? 1 : 0)" [class]="prop.groupRowsFooterClass || 'text-right font-bold pr-6'">
+                {{item[prop.groupRowsFooter]}}
+            </td>
+        </tr>
+      </ng-template>
+
       <ng-template pTemplate="emptymessage">
         <tr>
           <td [attr.colspan]="getItemsTable().length + (prop.isCheckable ? 1 : 0)"><strong>{{getNoDataText()}}</strong></td>
