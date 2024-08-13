@@ -12,11 +12,10 @@
       [attr.id]="prop.id ? prop.id : null"
 
       [scrollable]="prop.isRowGroupSubheaderTable ? true : false"
-      [sortField]="prop.isRowGroupSubheaderTable ? prop.sortField : null"
-      [sortMode]="prop.isRowGroupSubheaderTable ? 'single' : null"
       [scrollHeight]="prop.isRowGroupSubheaderTable ? prop.scrollHeight : null"
       [rowGroupMode]="prop.isRowGroupSubheaderTable ? 'subheader' : null"
       [groupRowsBy]="prop.isRowGroupSubheaderTable ? prop.groupRowsBy : null"
+      [sortField]="prop.isRowGroupSubheaderTable ? prop.sortField : null"
 
       [value]="list"
       [styleClass]="prop.styleClass || 'p-datatable-sm p-datatable-striped'"
