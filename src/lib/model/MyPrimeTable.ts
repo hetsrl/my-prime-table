@@ -16,6 +16,8 @@ export class MyPrimeTable{
   noDataText?: string;
   styleClass?: string;
 
+  showCaptionWhenEmptyList?: boolean;
+
   isRowGroupSubheaderTable?: boolean;
   sortField?: string;
   scrollHeight?: string;

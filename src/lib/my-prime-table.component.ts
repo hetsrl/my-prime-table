@@ -87,11 +87,15 @@ export class MyPrimeTableComponent implements OnInit, OnChanges {
   }
 
   getShowCaption(){
-    return !!this.list && this.list.length > 0 && !!this.prop &&
+    return (!!this.list && this.list.length > 0 && !!this.prop &&
           (!!this.prop.xlsEnable || !!this.prop.pdfEnable || !!this.prop.title ||
             !!this.prop.genericButton1Enable || !!this.prop.genericButton2Enable || !!this.prop.genericButton3Enable || !!this.prop.genericButton4Enable
             || !!this.prop.genericButton5Enable || !!this.prop.genericButton6Enable
-          )
+          )) || this.prop.showCaptionWhenEmptyList
+  }
+
+  getShowExcelPdfButtonNotEmptyList(){
+    return !!this.list && this.list.length > 0
   }
 
   getRowsPerPageOptions(){

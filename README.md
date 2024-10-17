@@ -123,7 +123,8 @@ myTable: MyPrimeTable = {
 | metaKeySelection         | string?            | id                 | metakey selection                              | 
 | selectionMode            | "single", "multiple"   | "single"            | type of selection        | 
 | noDataText               | string?            | 'No data found'    | text displayed when data not found             |
-| styleClass               | string?            | 'p-datatable-sm p-datatable-striped'    | style of table            |
+| styleClass               | string?            | 'p-datatable-sm p-datatable-striped'    | style of table    |
+| showCaptionWhenEmptyList | boolean?           | true                | show caption when empty list     |
 | genericButton1Enable      | boolean?           | true                | enable the first button in the table header     |
 | genericButton1Icon        | string?            | 'pi pi-save'        | icon name for the first button                  |
 | genericButton1Label       | string?            | 'Save'              | label text for the first button                 |

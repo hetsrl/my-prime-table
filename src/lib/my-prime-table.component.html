@@ -37,12 +37,12 @@
       <ng-template pTemplate="caption" *ngIf="getShowCaption()">
         <div class="grid align-items-center">
           <div [class]="prop.headerClassLeft || 'lg:col-2 md:col-3'">
-            <button *ngIf="prop.xlsEnable" type="button" pButton icon="pi pi-file-excel" iconPos="left" label="Excel" (click)="exportExcel()"
+            <button *ngIf="prop.xlsEnable && getShowExcelPdfButtonNotEmptyList()" type="button" pButton icon="pi pi-file-excel" iconPos="left" label="Excel" (click)="exportExcel()"
               [attr.aria-label]="prop.xlsButtonAriaLabel ? prop.xlsButtonAriaLabel : null"
               [attr.id]="prop.xlsButtonId ? prop.xlsButtonId : null"
               class="p-button-sm p-button-outlined ui-button-success m-1">
             </button>
-            <button *ngIf="prop.pdfEnable" type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()"
+            <button *ngIf="prop.pdfEnable && getShowExcelPdfButtonNotEmptyList()" type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()"
               [attr.aria-label]="prop.pdfButtonAriaLabel ? prop.pdfButtonAriaLabel : null"
               [attr.id]="prop.pdfButtonId ? prop.pdfButtonId : null"
               class="p-button-sm p-button-outlined ui-button-success m-1">
