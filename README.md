@@ -192,13 +192,17 @@ myTable: MyPrimeTable = {
 | label                    | string                       | 'Surname'          | title of column on header                         |
 | keyValue                 | string                       | 'surname'          | name of property on rows                          |
 | width                    | string?                      | '400px'            | optional width of column                          |
-| class                    | string?                      | 'text-right'       | css class of column                               |
+| classHeader              | string?                      | 'text-right'       | css class of header                               |
+| classHeaderFunc          | (row)=>any?    | (row)=>row.id!==1 ? 'text-right' : null | function that determines the css class of the header |
+| class                    | string?                      | 'text-right'       | css class of column and header                              |
+| classFunc                | (row)=>any?    | (row)=>row.id!==1 ? 'text-right' : null | function that determines the css class of the column |
 | pipes                    | Array<MyPrimeTablePipeItem>? | See doc below      | pipe array to transform the data output on table  |
 | xlsPipes                 | Array<MyPrimeTablePipeItem>? | See doc below      | pipe array to transform the data output on xls    |
 | onlyXls                  | boolean?                     | true               | column displayed only on xls                   |
 | onlyTable                | boolean?                     | true               | column displayed only on table                 |
 | isIcon                   | boolean?                     | true               | if the column displays an icon                 |
 | onClick                  | boolean?                     | true               | whether the onClick event should be thrown on the cell |
+| onClickFunc              | (row)=>boolean?              | (row)=>row.id!==1  | function to determine whether the onClick event should be thrown on the cell |
 | icon                     | string?                      | 'pi pi-file-pdf'   | icon displayed in the column                       |
 | iconFontSize             | string?                      | '1rem'             | icon font size                                 |
 | noSorting                | boolean?                     | true               | unsortable column                              |

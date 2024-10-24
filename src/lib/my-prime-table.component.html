@@ -90,7 +90,7 @@
           </th>
           <th *ngFor="let item of getItemsTable(); index as i; first as isFirst"
             [pSortableColumn]="(item.noSorting || item.isInputText || item.isInputSwitch || prop.isRowGroupSubheaderTable) ? null : item.keyValue"
-            [ngClass]="item.class"
+            [ngClass]="item.classHeaderFunc ? item.classHeaderFunc(item) : (item.classHeader || item.class)"
             [attr.id]="prop.id ? prop.id + '_' + i + '_th' : i + '_th'"
           >
             <ng-template [ngIf]="item.noSorting || item.isInputText || item.isInputSwitch || prop.isRowGroupSubheaderTable" [ngIfElse]="elseBlock">
@@ -125,17 +125,19 @@
           <td *ngIf="prop.isCheckable">
             <p-tableCheckbox [value]="row" [hidden]="prop.isCheckHiddenFunc && prop.isCheckHiddenFunc(row)" [attr.id]="prop.checkId ? prop.checkId + '_' + rowIndex : null"></p-tableCheckbox>
           </td>
-          <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pEditableColumn]="!!item.isInputText" [ngClass]="item.class">
+          <td *ngFor="let item of getItemsTable(); index as i; first as isFirst" [pEditableColumn]="!!item.isInputText" [ngClass]="item.classFunc ? item.classFunc(row) : item.class">
             <span>
               <ng-template [ngIf]="!item.isInputSwitch && item.isIcon && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
-                <div [style]="item.width ? {'width': item.width} : {} ">
+                <div
+                [style]="item.width ? {'width': item.width, 'color': item.textColorFunc ? item.textColorFunc(row) : null} : {'color': item.textColorFunc ? item.textColorFunc(row) : null} "
+                >
                   <i [ngClass]="item.icon"
                   [attr.alt]="item.alt ? item.alt : null"
                   [attr.role]="item.role ? item.role : null"
                   [attr.id]="item.id ? item.id + '_' + rowIndex : null"
                   [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
                   [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
-                  [style]="item.onClick ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="item.onClick ? onClickCell(row, item.keyValue) : false"></i>
+                  [style]="(item.onClickFunc ? item.onClickFunc(row) : item.onClick) ?  {'font-size': item.iconFontSize || '1rem','cursor': 'pointer'} : {'font-size': item.iconFontSize || '1rem'}" (click)="(item.onClickFunc ? item.onClickFunc(row) : item.onClick) ? onClickCell(row, item.keyValue) : false"></i>
                 </div>
               </ng-template>
               <ng-template [ngIf]="!item.isInputSwitch && !item.isIcon && item.isInputText && !(item.inputTextDisableFunc && item.inputTextDisableFunc(row)) && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
