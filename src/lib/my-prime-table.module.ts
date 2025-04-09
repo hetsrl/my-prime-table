@@ -3,12 +3,13 @@ import { MyPrimeTableComponent } from './my-prime-table.component';
 
 import { CommonModule } from '@angular/common';
 
-import { TableModule } from 'primeng/table';
+import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
-import {InputTextModule} from 'primeng/inputtext';
-import {PanelModule} from 'primeng/panel';
-import {InputSwitchModule} from 'primeng/inputswitch';
+import { PanelModule } from 'primeng/panel';
+import { TableModule } from 'primeng/table';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -24,6 +25,7 @@ import {InputSwitchModule} from 'primeng/inputswitch';
     InputTextModule,
     PanelModule,
     InputSwitchModule,
+    FormsModule,
     //BrowserAnimationsModule,
   ],
   exports: [
