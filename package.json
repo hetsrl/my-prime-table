@@ -33,6 +33,7 @@
     "xlsx": "^0.18.5"
   },
   "dependencies": {
+    "my-prime-table": "file:",
     "tslib": "^2.3.1"
   }
 }

@@ -1,8 +1,8 @@
 # MyPrimeTable
 
-Compatible with Angular 17
+Compatible with Angular 18
 
-Author: Matteo Alderighi - Software Developer @ H&T srl Florence, Italy - 2022
+Author: Matteo Alderighi - Software Developer @ H&T srl Florence, Italy - (2022 - 2025)
 GitHub: https://github.com/hetsrl/my-prime-table.git
 
 ## Documentation
