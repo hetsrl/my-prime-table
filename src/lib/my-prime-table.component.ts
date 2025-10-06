@@ -17,9 +17,10 @@ import { MyPrimeTableItem } from './model/MyPrimeTableItem';
 import * as Excel from "exceljs";
 
 @Component({
-  selector: 'my-prime-table',
-  templateUrl: './my-prime-table.component.html',
-  styleUrls: ['./my-prime-table.component.css'],
+    selector: 'my-prime-table',
+    templateUrl: './my-prime-table.component.html',
+    styleUrls: ['./my-prime-table.component.css'],
+    standalone: false
 })
 export class MyPrimeTableComponent implements OnInit, OnChanges {
 
