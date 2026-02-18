@@ -178,6 +178,7 @@
               <ng-template [ngIf]="item.isInputSwitch && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
                   <p-inputSwitch
+                  [disabled]="item.inputSwitchDisableFunc && item.inputSwitchDisableFunc(row)"
                   [attr.alt]="item.alt ? item.alt : null"
                   [attr.role]="item.role ? item.role : null"
                   [attr.id]="item.id ? item.id + '_' + rowIndex : null"

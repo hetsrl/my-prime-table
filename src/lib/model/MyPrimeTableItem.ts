@@ -24,6 +24,7 @@ export class MyPrimeTableItem{
   placeholder?: string;
   isHiddenFunc?: (row) => boolean;
   isInputSwitch?: boolean;
+  inputSwitchDisableFunc?: (row) => boolean;
   trueValue?: string;
   falseValue?: string;
   textColorFunc?: (row) => any;

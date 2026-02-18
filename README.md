@@ -212,6 +212,7 @@ myTable: MyPrimeTable = {
 | placeholder              | string?                      | '__/__/____'       | placeholder for column with input text         |
 | isHiddenFunc             | (row)=>boolean?              | (row)=>row.id!==1  | function to hide the cell contents             |
 | isInputSwitch            | boolean?                     | true               | if column is input switch                      |
+| inputSwitchDisableFunc   | (row)=>boolean?              | (row)=>row.id!==1  | function to disable input switch on a certain cell  |
 | trueValue                | string?                      | 'Y'                | value for true on input switch                 |
 | falseValue               | string?                      | 'N'                | value for false on input switch                |
 | textColorFunc            | (row)=>any?                  | (row)=>row.id!==1 ? 'red' : null | works to decide the color of the text in the cell |
