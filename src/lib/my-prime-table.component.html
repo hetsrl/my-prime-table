@@ -175,16 +175,16 @@
                   {{getValue(row, item)}}
                 </div>
               </ng-template>
-              <ng-template [ngIf]="item.isInputSwitch && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
+               <ng-template [ngIf]="item.isInputSwitch && !(item.isHiddenFunc && item.isHiddenFunc(row)) ">
                 <div [style]="item.width ? {'width': item.width} : {} ">
-                  <p-inputSwitch
+                  <p-toggleswitch
                   [disabled]="item.inputSwitchDisableFunc && item.inputSwitchDisableFunc(row)"
                   [attr.alt]="item.alt ? item.alt : null"
                   [attr.role]="item.role ? item.role : null"
                   [attr.id]="item.id ? item.id + '_' + rowIndex : null"
                   [attr.aria-label]="item.ariaLabel ? item.ariaLabel : null"
                   [attr.aria-labelledby]="item.ariaLabelledby ? item.ariaLabelledby : null"
-                  [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (keydown)="onKeyDown($event, row, item.keyValue)" (onChange)='onChangeInput(row, item.keyValue)'></p-inputSwitch>
+                  [(ngModel)]="row[item.keyValue]" [trueValue]="item.trueValue" [falseValue]="item.falseValue" (keydown)="onKeyDown($event, row, item.keyValue)" (onChange)='onChangeInput(row, item.keyValue)'></p-toggleswitch>
                 </div>
               </ng-template>
 

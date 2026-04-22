@@ -3,5 +3,6 @@
   "dest": "../../dist/my-prime-table",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["events"]
 }
